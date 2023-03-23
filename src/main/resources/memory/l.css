@@ -1,0 +1,50 @@
+#borderPane{
+	-fx-background-color: #212322;
+}
+#txt{
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 2 0;
+    -fx-text-fill: white;
+    -fx-font-size: 11pt;
+    -fx-font-weight: bold;
+}
+
+#btnLogin{
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+	-fx-background-color: #297BE7;
+	-fx-background-radius: 10;
+	-fx-pref-width: 300px;
+    -fx-pref-height: 25px;
+    -fx-cursor: hand;
+}
+
+#line{
+	-fx-stroke: #5B5C5E;
+	-fx-stroke-width: 2;
+}
+
+#or{
+	-fx-text-fill: white;
+}
+
+#forgetPass{
+	-fx-text-fill: #689EDE;
+	-fx-font-weight: bold;
+	-fx-cursor: hand;
+}
+
+#btnCreer{
+	-fx-text-fill: white;
+	-fx-background-color: #2C9344;
+	-fx-background-radius: 10;
+	-fx-pref-width: 150px;
+    -fx-pref-height: 25px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+

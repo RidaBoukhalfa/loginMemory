@@ -1,0 +1,93 @@
+#hbox{
+    -fx-background-color: #212322;
+    -fx-background-radius: 20;
+}
+#Vbox{
+    -fx-background-color: #212322;
+    -fx-background-radius: 20;
+}
+
+#listView .list-cell:odd{
+-fx-border-color: transparent;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 20;
+}
+
+#listView .list-cell {
+
+
+        -fx-background-color: transparent;
+        -fx-text-fill: #212322;
+        -fx-font-size: 12px;
+        -fx-background-radius: 20;
+}
+
+#listView .list-cell:selected {
+-fx-border-color: transparent;
+    -fx-background-color: #135FC0;
+    -fx-text-fill: #212322;
+    -fx-background-radius: 20;
+}
+
+#listView{
+-fx-border-color: transparent;
+-fx-background-color: #ffffff;
+-fx-border-color: #212322;
+
+-fx-background-radius: 20;
+
+}
+
+#btnCreer{
+	-fx-text-fill: #212322;
+	-fx-background-color: #2C9344;
+	-fx-background-radius: 10;
+	-fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+#label1{
+ -fx-text-fill: #212322;
+ 	-fx-background-color: #2C9344;
+ 	-fx-background-radius: 10;
+ 	-fx-pref-width: 200px;
+     -fx-pref-height: 40px;
+     -fx-cursor: hand;
+     -fx-font-weight: bold;
+}
+#label2{
+    -fx-text-fill: #212322;
+ 	-fx-background-color: #2C9344;
+ 	-fx-background-radius: 10;
+ 	-fx-pref-width: 650px;
+    -fx-pref-height: 50px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+#btnRapid{
+    -fx-text-fill: #212322;
+    -fx-background-color: #FFDD40;
+    -fx-background-radius: 10;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+#btnPar{
+    -fx-cursor: hand;
+}
+#search{
+        -fx-background-color: transparent;
+        -fx-border-color: white;
+        -fx-border-width: 3;
+        -fx-border-style: solid;
+        -fx-border-width: 0 0 2 0;
+        -fx-text-fill: white;
+        -fx-font-size: 9pt;
+        -fx-font-weight: bold;
+}
+
+#Qurane{
+    -fx-font-weight: bold;
+}
