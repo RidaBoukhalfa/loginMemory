@@ -1,5 +1,5 @@
 package memory;
-
+//-------
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
@@ -36,7 +36,7 @@ import java.util.Date;
 
 public class HelloApplication extends Application {
 
-    public class Person {
+    public class Person  {
         private String firstName;
         private String lastName;
         private int id;
@@ -44,15 +44,15 @@ public class HelloApplication extends Application {
         private String khasem;
         private String classes;
         private String sujet;
-        private Date date;
-        private Date retard;
+        private String date;
+        private String retard;
         private String couse;
         private String liew;
 
 
 
 
-        public Person(String firstName, String lastName, int id,String lastFather,String khasem,String classes,String sujet,Date date,Date retard,String couse,String liew) {
+        public Person(int id,String firstName, String lastName, String lastFather,String khasem,String classes,String sujet,String date,String retard,String couse,String liew) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.id = id;
@@ -66,6 +66,12 @@ public class HelloApplication extends Application {
             this.liew=liew;
         }
 
+//----------------------------------------------------------------------------------------------------------------------------
+
+        public int getId() {
+            return id;
+        }
+
         public String getFirstName() {
             return firstName;
         }
@@ -74,29 +80,44 @@ public class HelloApplication extends Application {
             return lastName;
         }
 
-        public int getId() {
-            return id;
+        public String getLastFather() {
+            return lastFather;
         }
 
         public String getKhasem(){
-            return lastFather;
+            return khasem;
         }
 
         public String getClasses(){
-            return lastFather;
+            return classes;
         }
 
-//        public String getSujet(){
-//            return l;
-//        }
+        public String getSujet(){
+            return sujet;
+        }
 
         public String getCouse(){
             return couse;
         }
 
+        public String getDate(){
+            return date;
+        }
+
+        public String getRetard(){
+            return retard;
+        }
+
         public String getLiew(){
             return liew;
         }
+
+//-------------------------------------------------------------------------------------------------------------------------
+
+        public void setid(int id) {
+            this.id = id;
+        }
+
         public void setFirstName(String firstName) {
             this.firstName = firstName;
         }
@@ -105,12 +126,40 @@ public class HelloApplication extends Application {
             this.lastName = lastName;
         }
 
-        public void setid(int id) {
-            this.id = id;
+        public void setLastFather(String lastFather) {
+            this.lastFather = lastFather;
+        }
+
+        public void setKhasem(String khasem) {
+            this.khasem = khasem;
+        }
+
+        public void setClasses(String classes) {
+            this.classes = classes;
+        }
+
+        public void setSujet(String sujet) {
+            this.sujet = sujet;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public void setRetard(String retard ) {
+            this.retard = retard;
+        }
+
+        public void setCouse(String couse) {
+            this.couse = couse;
+        }
+
+        public void setLiew(String liew) {
+            this.liew = liew;
         }
     }
 
-
+//-------------------------------------------------------------------------------------------------------------
     private boolean isLiked = false;
 
     @Override
@@ -642,7 +691,7 @@ public class HelloApplication extends Application {
                         public void handle(ActionEvent actionEvent) {
                             Group groupM1 = new Group();
                             HBox hboxM1 = new HBox();
-                            Scene scene4 = new Scene(groupM1,1450, 790);
+                            Scene sceneM1 = new Scene(groupM1,1450, 790);
 
                             //Button add = new Button("")
 
@@ -912,11 +961,70 @@ public class HelloApplication extends Application {
                             Button regClient = new Button("تعديل");
 
 
+                            TableView<Person> tableView = new TableView<>();
+
+                            TableColumn<Person, Integer> column1 = new TableColumn<>("Column 1");
+                            column1.setCellValueFactory(new PropertyValueFactory<>("property1"));
+
+                            TableColumn<Person, String> column2 = new TableColumn<>("Column 2");
+                            column2.setCellValueFactory(new PropertyValueFactory<>("property2"));
+
+                            TableColumn<Person, String> column3 = new TableColumn<>("Column 3");
+                            column3.setCellValueFactory(new PropertyValueFactory<>("property3"));
+
+                            TableColumn<Person, String> column4 = new TableColumn<>("Column 4");
+                            column4.setCellValueFactory(new PropertyValueFactory<>("property4"));
+
+                            TableColumn<Person, String> column5 = new TableColumn<>("Column 5");
+                            column5.setCellValueFactory(new PropertyValueFactory<>("property5"));
+
+                            TableColumn<Person, String> column6 = new TableColumn<>("Column 6");
+                            column6.setCellValueFactory(new PropertyValueFactory<>("property6"));
+
+                            TableColumn<Person, String> column7 = new TableColumn<>("Column 7");
+                            column7.setCellValueFactory(new PropertyValueFactory<>("property7"));
+
+                            TableColumn<Person, String> column8 = new TableColumn<>("Column 8");
+                            column8.setCellValueFactory(new PropertyValueFactory<>("property8"));
+
+                            TableColumn<Person, String> column9 = new TableColumn<>("Column 9");
+                            column9.setCellValueFactory(new PropertyValueFactory<>("property9"));
+
+                            TableColumn<Person, String> column10 = new TableColumn<>("Column 10");
+                            column10.setCellValueFactory(new PropertyValueFactory<>("property10"));
+
+                            TableColumn<Person, String> column11 = new TableColumn<>("Column 11");
+                            column11.setCellValueFactory(new PropertyValueFactory<>("property11"));
+
+                            tableView.getColumns().add(column1);
+                            tableView.getColumns().add(column2);
+                            tableView.getColumns().add(column3);
+                            tableView.getColumns().add(column4);
+                            tableView.getColumns().add(column5);
+                            tableView.getColumns().add(column6);
+                            tableView.getColumns().add(column7);
+                            tableView.getColumns().add(column8);
+                            tableView.getColumns().add(column9);
+                            tableView.getColumns().add(column10);
+                            tableView.getColumns().add(column11);
+
+                            ObservableList<Person> data = FXCollections.observableArrayList(
+                                    new Person(001,"rida","kamel","maroin","khaled","jenah", "kkkkkkkkk" ,"2023/2/2", "20/2/2024","mmmmmmm","kjkjkj"),
+                                    new Person(001,"rida","kamel","maroin","khaled","jenah", "kkkkkkkkk" ,"2023/2/2", "20/2/2024","mmmmmmm","kjkjkj")
+//                                    new HelloApplication("Data 2", 20),
+//                                    new HelloApplication("Data 3", 30)
+                            );
+
+                            tableView.setItems(data);
+
+                            tableView.setLayoutX(30);
+                            tableView.setLayoutY(250);
 
 
-//                            TableView<String> tableView = new TableView<>();
-//
-//
+
+                            //TableView<String> tableView = new TableView<>();
+
+
 //                            TableView<Person> tableView = new TableView<Person>();
 //                            TableColumn<Person, String> firstNameCol = new TableColumn<Person, String>("First Name");
 //                            firstNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
@@ -926,11 +1034,7 @@ public class HelloApplication extends Application {
 //                            ageCol.setCellValueFactory(new PropertyValueFactory<Person, Integer>("age"));
 //                            tableView.getColumns().addAll(firstNameCol, lastNameCol, ageCol);
 //
-//                            ObservableList<Person> data = FXCollections.observableArrayList(
-//                                    new Person("John", "Doe", 30),
-//                                    new Person("Jane", "Doe", 25),
-//                                    new Person("Bob", "Smith", 40)
-//                            );
+//
 ////
 ////                            tableView.setItems(data);
 //
@@ -945,15 +1049,15 @@ public class HelloApplication extends Application {
 //                            ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
 //
 //// create the table and add the columns
-//                            TableView<Person> tableView = new TableView<>();
+//                            //TableView<Person> tableView = new TableView<>();
 //                            tableView.getColumns().addAll(firstNameColumn, lastNameColumn, ageColumn);
 //
 //// create some sample data
-////                            ObservableList<Person> data = FXCollections.observableArrayList(
-////                                    new Person("John", "Doe", 25),
-////                                    new Person("Jane", "Smith", 32),
-////                                    new Person("Bob", "Johnson", 42)
-////                            );
+//                            ObservableList<Person> data = FXCollections.observableArrayList(
+//                                    new Person("John", "Doe", 25),
+//                                    new Person("Jane", "Smith", 32),
+//                                    new Person("Bob", "Johnson", 42)
+//                            );
 //
 // //add the data to the table
 //                            tableView.setItems(data);
@@ -997,10 +1101,10 @@ public class HelloApplication extends Application {
                             hboxM1.setLayoutX(10);
                             hboxM1.setLayoutY(10);
 
-                            scene4.getStylesheets().add(HelloApplication.class.getResource("styleM1.css").toExternalForm());
-                            groupM1.getChildren().addAll(hboxM1,btnLogo,btnProfil,btnTemp,btnContract,btnTelephone,btnPeople,btnHome);
+                            sceneM1.getStylesheets().add(HelloApplication.class.getResource("styleM1.css").toExternalForm());
+                            groupM1.getChildren().addAll(tableView,hboxM1,btnLogo,btnProfil,btnTemp,btnContract,btnTelephone,btnPeople,btnHome);
 
-                            stage.setScene(scene4);
+                            stage.setScene(sceneM1);
                             stage.setMaximized(true);
                             stage.show();
                         }
