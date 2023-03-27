@@ -2,8 +2,6 @@ package memory;
 //-------
 import javafx.animation.*;
 import javafx.application.Application;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -15,14 +13,12 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -31,8 +27,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Stack;
 
 public class HelloApplication extends Application {
 
@@ -49,10 +47,7 @@ public class HelloApplication extends Application {
         private String couse;
         private String liew;
 
-
-
-
-        public Person(int id,String firstName, String lastName, String lastFather,String khasem,String classes,String sujet,String date,String retard,String couse,String liew) {
+        public Person(String liew,String couse,String retard,String date,String sujet,String classes,String khasem, String lastFather, String lastName,String firstName,int id) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.id = id;
@@ -960,113 +955,255 @@ public class HelloApplication extends Application {
                             Button delClient = new Button("حدف");
                             Button regClient = new Button("تعديل");
 
+                            addClient.setId("btnaddClient");
+                            addClient.setLayoutX(30);
+                            addClient.setLayoutY(150);
+
+                            delClient.setId("btndelClient");
+                            delClient.setLayoutX(280);
+                            delClient.setLayoutY(150);
+
+
+
+                            regClient.setId("btnregClient");
+                            regClient.setLayoutX(530);
+                            regClient.setLayoutY(150);
+
 
                             TableView<Person> tableView = new TableView<>();
 
-                            TableColumn<Person, Integer> column1 = new TableColumn<>("Column 1");
-                            column1.setCellValueFactory(new PropertyValueFactory<>("property1"));
+                            TableColumn<Person, Integer> idColumn = new TableColumn<>("رقم القضية");
+                            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+                            idColumn.setPrefWidth(100);
+                            idColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column2 = new TableColumn<>("Column 2");
-                            column2.setCellValueFactory(new PropertyValueFactory<>("property2"));
+                            TableColumn<Person, String> firstNameColumn = new TableColumn<>("لقب الموكل");
+                            firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+                            firstNameColumn.setPrefWidth(110);
+                            firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+                            firstNameColumn.setOnEditCommit(event -> {
+                                Person person = event.getRowValue();
+                                person.setFirstName(event.getNewValue());
+                            });
+                            firstNameColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column3 = new TableColumn<>("Column 3");
-                            column3.setCellValueFactory(new PropertyValueFactory<>("property3"));
+                            TableColumn<Person, String> lastNameColumn = new TableColumn<>("اسم الموكل");
+                            lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+                            lastNameColumn.setPrefWidth(110);
+                            lastNameColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column4 = new TableColumn<>("Column 4");
-                            column4.setCellValueFactory(new PropertyValueFactory<>("property4"));
+                            TableColumn<Person, String> lastFatherColumn = new TableColumn<>("اسم اب الموكل");
+                            lastFatherColumn.setCellValueFactory(new PropertyValueFactory<>("lastFather"));
+                            lastFatherColumn.setPrefWidth(110);
+                            lastFatherColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column5 = new TableColumn<>("Column 5");
-                            column5.setCellValueFactory(new PropertyValueFactory<>("property5"));
+                            TableColumn<Person, String> khasemColumn = new TableColumn<>("الخصم");
+                            khasemColumn.setCellValueFactory(new PropertyValueFactory<>("khasem"));
+                            khasemColumn.setPrefWidth(120);
+                            khasemColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column6 = new TableColumn<>("Column 6");
-                            column6.setCellValueFactory(new PropertyValueFactory<>("property6"));
+                            TableColumn<Person, String> classesColumn = new TableColumn<>("القسم أو الغرفة");
+                            classesColumn.setCellValueFactory(new PropertyValueFactory<>("classes"));
+                            classesColumn.setPrefWidth(120);
+                            classesColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column7 = new TableColumn<>("Column 7");
-                            column7.setCellValueFactory(new PropertyValueFactory<>("property7"));
+                            TableColumn<Person, String> sujetColumn = new TableColumn<>("موضوع القضية");
+                            sujetColumn.setCellValueFactory(new PropertyValueFactory<>("sujet"));
+                            sujetColumn.setPrefWidth(198);
+                            sujetColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column8 = new TableColumn<>("Column 8");
-                            column8.setCellValueFactory(new PropertyValueFactory<>("property8"));
+                            TableColumn<Person, String> dateColumn = new TableColumn<>("تاريخ الجلسة");
+                            dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+                            dateColumn.setPrefWidth(100);
+                            dateColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column9 = new TableColumn<>("Column 9");
-                            column9.setCellValueFactory(new PropertyValueFactory<>("property9"));
+                            TableColumn<Person, String> retardColumn = new TableColumn<>("تاريح التأجيل");
+                            retardColumn.setCellValueFactory(new PropertyValueFactory<>("retard"));
+                            retardColumn.setPrefWidth(100);
+                            retardColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column10 = new TableColumn<>("Column 10");
-                            column10.setCellValueFactory(new PropertyValueFactory<>("property10"));
+                            TableColumn<Person, String> couseColumn = new TableColumn<>("سبب التأجيل");
+                            couseColumn.setCellValueFactory(new PropertyValueFactory<>("couse"));
+                            couseColumn.setPrefWidth(120);
+                            couseColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> column11 = new TableColumn<>("Column 11");
-                            column11.setCellValueFactory(new PropertyValueFactory<>("property11"));
+                            TableColumn<Person, String> liewColumn = new TableColumn<>("مكان الجلسة");
+                            liewColumn.setCellValueFactory(new PropertyValueFactory<>("liew"));
+                            liewColumn.setPrefWidth(120);
+                            liewColumn.setStyle("-fx-alignment: CENTER;");
 
-                            tableView.getColumns().add(column1);
-                            tableView.getColumns().add(column2);
-                            tableView.getColumns().add(column3);
-                            tableView.getColumns().add(column4);
-                            tableView.getColumns().add(column5);
-                            tableView.getColumns().add(column6);
-                            tableView.getColumns().add(column7);
-                            tableView.getColumns().add(column8);
-                            tableView.getColumns().add(column9);
-                            tableView.getColumns().add(column10);
-                            tableView.getColumns().add(column11);
+                            tableView.getColumns().addAll(liewColumn,couseColumn,retardColumn,dateColumn,sujetColumn,classesColumn,khasemColumn,lastFatherColumn,lastNameColumn,firstNameColumn,idColumn);
+
+
+                            //ObservableList<Person> originalPersonData = FXCollections.observableArrayList();
 
                             ObservableList<Person> data = FXCollections.observableArrayList(
-                                    new Person(001,"rida","kamel","maroin","khaled","jenah", "kkkkkkkkk" ,"2023/2/2", "20/2/2024","mmmmmmm","kjkjkj"),
-                                    new Person(001,"rida","kamel","maroin","khaled","jenah", "kkkkkkkkk" ,"2023/2/2", "20/2/2024","mmmmmmm","kjkjkj")
-//                                    new HelloApplication("Data 2", 20),
-//                                    new HelloApplication("Data 3", 30)
+                                    new Person("rida sid ahmed rue 360","kamel","maroin","khaled","jenah", "kkkkkkkkk" ,"2023/2/2", "20/2/2024","mmmmmmm","kjkjkj",1),
+                                    new Person("rida","kamel2","maroin2","khaled2","jenah2", "kkkkkkkkk2" ,"2023/2/22", "20/02/2024","mmmmmmm2","kjkjkj2",2)
                             );
 
                             tableView.setItems(data);
 
+                            TextField searchField = new TextField();
+                            searchField.setId("search");
+                            searchField.setPromptText("البحث عن موكل");
+                            searchField.setAlignment(Pos.CENTER);
+                            searchField.setLayoutX(1030);
+                            searchField.setLayoutY(155);
+
+                            Stack<Person> deletedPersons = new Stack<>();
+                            Stack<Person> modifyPersons = new Stack<>();
+
+                            delClient.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent actionEvent) {
+                                    delClient.setOnAction((ActionEvent event) -> {
+                                        Person person = tableView.getSelectionModel().getSelectedItem();
+                                        if (person != null) {
+                                            data.remove(person);
+                                            deletedPersons.push(person);
+                                        }
+                                    });
+                                }
+                            });
+
+
+                            regClient.setOnAction(event -> {
+                                TablePosition<Person, ?> pos = tableView.getSelectionModel().getSelectedCells().get(0);
+                                int row = pos.getRow();
+                                TableColumn<Person, ?> col = pos.getTableColumn();
+                                int colIndex = tableView.getColumns().indexOf(col);
+
+                                TextInputDialog dialog = new TextInputDialog(col.getCellData(row).toString());
+                                dialog.setHeaderText("Modify Cell");
+                                dialog.setContentText("Enter new value:");
+                                Optional<String> result = dialog.showAndWait();
+                                result.ifPresent(value -> {
+                                    Person person = tableView.getItems().get(row);
+                                    if (colIndex == 9) {
+                                        person.setFirstName(value);
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 8) {
+                                        person.setLastName(value);
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 10) {
+                                        person.setid(Integer.parseInt(value));
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 7) {
+                                        person.setLastFather(value);
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 6) {
+                                        person.setKhasem(value);
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 5) {
+                                        person.setClasses(value);
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 4) {
+                                        person.setSujet(value);
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 3) {
+                                        person.setDate(value);
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 2) {
+                                        person.setRetard(value);
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 1) {
+                                        person.setCouse(value);
+                                        modifyPersons.push(person);
+                                    } else if (colIndex == 0) {
+                                        person.setLiew(value);
+                                        modifyPersons.push(person);
+                                    }
+
+                                    tableView.setItems(data);
+                                    // Disable back button
+                                    regClient.setDisable(true);
+                                    // Clear selection
+                                    tableView.getSelectionModel().clearSelection();
+                                    // Refresh the TableView to reflect the changes
+                                    tableView.refresh();
+                                });
+
+                                regClient.setDisable(true);
+
+                                tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+                                    regClient.setDisable(newSelection == null);
+
+                                });
+
+                            });
+
+                            Button backButton = new Button("الرجوع بخطوة");
+                            backButton.setId("backBtn");
+                            backButton.setOnAction((ActionEvent event) -> {
+                                if (!deletedPersons.isEmpty()) {
+                                    Person delPerson = deletedPersons.pop();
+                                    data.add(delPerson);
+                                }
+                                tableView.setItems(data);
+                                // Disable back button
+                                backButton.setDisable(true);
+                                // Clear selection
+                                tableView.getSelectionModel().clearSelection();
+                            });
+
+// Disable back button initially
+                            backButton.setDisable(true);
+
+                            tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+                                backButton.setDisable(newSelection == null);
+
+                            });
+
+                            backButton.setLayoutX(780);
+                            backButton.setLayoutY(150);
+
+                            FilteredList<Person> filteredData = new FilteredList<>(data, p -> true);
+
+                            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                                filteredData.setPredicate(person -> {
+                                    if (newValue == null || newValue.isEmpty()) {
+                                        return true;
+                                    }
+
+                                    String lowerCaseFilter = newValue.toLowerCase();
+
+                                    if (person.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    } else if (person.getLastName().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    }else if (person.getClasses().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    }else if (person.getDate().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    }else if (person.getCouse().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    }else if (person.getKhasem().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    }else if (person.getLiew().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    }else if (person.getLastFather().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    }else if (person.getSujet().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    }
+                                    else if (person.getRetard().toLowerCase().contains(lowerCaseFilter)) {
+                                        return true;
+                                    }
+                                    else if (String.valueOf(person.getId()).contains(lowerCaseFilter)) {
+                                        return true;
+                                    }
+
+                                    return false;
+                                });
+                            });
+
+                            tableView.setItems(filteredData);
+
                             tableView.setLayoutX(30);
                             tableView.setLayoutY(250);
 
-
-
-                            //TableView<String> tableView = new TableView<>();
-
-
-//                            TableView<Person> tableView = new TableView<Person>();
-//                            TableColumn<Person, String> firstNameCol = new TableColumn<Person, String>("First Name");
-//                            firstNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
-//                            TableColumn<Person, String> lastNameCol = new TableColumn<Person, String>("Last Name");
-//                            lastNameCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
-//                            TableColumn<Person, Integer> ageCol = new TableColumn<Person, Integer>("Age");
-//                            ageCol.setCellValueFactory(new PropertyValueFactory<Person, Integer>("age"));
-//                            tableView.getColumns().addAll(firstNameCol, lastNameCol, ageCol);
-//
-//
-////
-////                            tableView.setItems(data);
-//
-//                            // create the table columns
-//                            TableColumn<Person, String> firstNameColumn = new TableColumn<>("First Name");
-//                            firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-//
-//                            TableColumn<Person, String> lastNameColumn = new TableColumn<>("Last Name");
-//                            lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-//
-//                            TableColumn<Person, Integer> ageColumn = new TableColumn<>("Age");
-//                            ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
-//
-//// create the table and add the columns
-//                            //TableView<Person> tableView = new TableView<>();
-//                            tableView.getColumns().addAll(firstNameColumn, lastNameColumn, ageColumn);
-//
-//// create some sample data
-//                            ObservableList<Person> data = FXCollections.observableArrayList(
-//                                    new Person("John", "Doe", 25),
-//                                    new Person("Jane", "Smith", 32),
-//                                    new Person("Bob", "Johnson", 42)
-//                            );
-//
-// //add the data to the table
-//                            tableView.setItems(data);
-//
-//
-//
-//                            tableView.setLayoutX(30);
-//                            tableView.setLayoutY(250);
-//
+                            tableView.setStyle("-fx-background-color: #f2f2f2;");
 
 //---------------------------------------------------------------------------------------------
 
@@ -1102,7 +1239,7 @@ public class HelloApplication extends Application {
                             hboxM1.setLayoutY(10);
 
                             sceneM1.getStylesheets().add(HelloApplication.class.getResource("styleM1.css").toExternalForm());
-                            groupM1.getChildren().addAll(tableView,hboxM1,btnLogo,btnProfil,btnTemp,btnContract,btnTelephone,btnPeople,btnHome);
+                            groupM1.getChildren().addAll(backButton,searchField,addClient,delClient,regClient,tableView,hboxM1,btnLogo,btnProfil,btnTemp,btnContract,btnTelephone,btnPeople,btnHome);
 
                             stage.setScene(sceneM1);
                             stage.setMaximized(true);

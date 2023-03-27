@@ -2,3 +2,73 @@
     -fx-background-color: #212322;
     -fx-background-radius: 20;
 }
+.table-view {
+    -fx-pref-width: 1310px;
+    -fx-background-color: #f2f2f2;
+}
+
+.table-cell {
+    -fx-text-fill: #212322;
+    -fx-font-size: 11pt;
+    -fx-font-weight: bold;
+}
+.table-row-cell:hover {
+    -fx-background-color: #0096C9;
+    -fx-text-fill: #ffffff;
+
+}
+.table-cell:hover {
+     -fx-text-fill: #ffffff;
+}
+#btnaddClient{
+    -fx-text-fill: #212322;
+    -fx-background-color: #2C9344;
+    -fx-background-radius: 10;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+#btndelClient{
+    -fx-text-fill: #212322;
+    -fx-background-color: #C0203D;
+    -fx-background-radius: 10;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+#btnregClient{
+    -fx-text-fill: #212322;
+    -fx-background-color: #297BE7;
+    -fx-background-radius: 10;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+#backBtn{
+    -fx-text-fill: #212322;
+    -fx-background-color: #FFDD40;
+    -fx-background-radius: 10;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 40px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+#search{
+    -fx-pref-width: 300px;
+    -fx-border-radius: 30;
+    -fx-background-color: transparent;
+    -fx-border-color: #212322;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+    -fx-border-width: 2 2 2 2;
+    -fx-text-fill: #212322;
+    -fx-font-size: 9pt;
+    -fx-font-weight: bold;
+}
