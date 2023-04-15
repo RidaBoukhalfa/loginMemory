@@ -1,0 +1,56 @@
+#feild{
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-radius: 10;
+    -fx-text-fill: black;
+    -fx-font-size: 9pt;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.choice-box .label {
+    -fx-alignment: center;
+}
+.date-picker .text-field {
+    -fx-alignment: center;
+}
+#btnaddClient{
+    -fx-text-fill: #212322;
+    -fx-background-color: #2C9344;
+    -fx-background-radius: 10;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 20px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+#btnqut{
+-fx-text-fill: #212322;
+    -fx-background-color: #297BE7;
+    -fx-background-radius: 10;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 20px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+#btndel{
+-fx-text-fill: #212322;
+    -fx-background-color: #C0203D;
+    -fx-background-radius: 10;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 20px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+#grid{
+-fx-background-color: white;
+}
+#lable{
+    -fx-font-weight: bold;
+    -fx-font-size: 9pt;
+}

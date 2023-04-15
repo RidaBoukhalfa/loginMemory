@@ -1,5 +1,5 @@
 package memory;
-//-------
+
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -7,154 +7,180 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Stack;
+import java.time.YearMonth;
+import java.util.*;
+import java.util.regex.Pattern;
 
 public class HelloApplication extends Application {
 
-    public class Person  {
-        private String firstName;
-        private String lastName;
-        private int id;
-        private String lastFather;
-        private String khasem;
-        private String classes;
-        private String sujet;
-        private String date;
-        private String retard;
-        private String couse;
-        private String liew;
 
-        public Person(String liew,String couse,String retard,String date,String sujet,String classes,String khasem, String lastFather, String lastName,String firstName,int id) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.id = id;
-            this.lastFather= lastFather;
-            this.khasem= khasem;
-            this.classes= classes;
-            this.sujet= sujet;
-            this.date=date;
-            this.retard=retard;
-            this.couse=couse;
-            this.liew=liew;
+        public class Person {
+
+            private String jiha;
+            private String lieu;
+            private String couse;
+            private LocalDate  retard;
+            private LocalDate  date;
+            private String sujet;
+            private String classes;
+            private String khasem;
+            private String sifa;
+            private String lastFather;
+            private String lastName;
+            private String firstName;
+            private int id;
+
+            public Person(String jiha, String lieu, String couse, LocalDate  retard, LocalDate  date, String sujet, String classes, String khasem, String sifa,String lastFather, String lastName, String firstName, int id) {
+                this.jiha = jiha;
+                this.lieu = lieu;
+                this.couse = couse;
+                this.retard = retard;
+                this.date = date;
+                this.sujet = sujet;
+                this.classes = classes;
+                this.khasem = khasem;
+                this.sifa = sifa;
+                this.lastFather = lastFather;
+                this.lastName = lastName;
+                this.firstName = firstName;
+                this.id = id;
+            }
+
+
+
+            // Getters and setters
+
+
+            public String getLastFather() {
+                return lastFather;
+            }
+
+            public void setLastFather(String lastFather) {
+                this.lastFather = lastFather;
+            }
+
+            public String getLastName() {
+                return lastName;
+            }
+
+            public void setLastName(String lastName) {
+                this.lastName = lastName;
+            }
+
+            public String getFirstName() {
+                return firstName;
+            }
+
+            public void setnewFirstName(String firstName) {
+                this.firstName = firstName;
+            }
+
+            public String getJiha() {
+                return jiha;
+            }
+
+            public void setJiha(String jiha) {
+                this.jiha = jiha;
+            }
+
+            public String getLieu() {
+                return lieu;
+            }
+
+            public void setLieu(String lieu) {
+                this.lieu = lieu;
+            }
+
+            public String getCouse() {
+                return couse;
+            }
+
+            public void setCouse(String couse) {
+                this.couse = couse;
+            }
+
+            public LocalDate  getRetard() {
+                return retard;
+            }
+
+            public void setRetard(LocalDate  retard) {
+                this.retard = retard;
+            }
+
+            public LocalDate  getDate() {
+                return date;
+            }
+
+            public void setDate(LocalDate  date) {
+                this.date = date;
+            }
+
+            public String getSujet() {
+                return sujet;
+            }
+
+            public void setSujet(String sujet) {
+                this.sujet = sujet;
+            }
+
+            public String getClasses() {
+                return classes;
+            }
+
+            public void setClasses(String classes) {
+                this.classes = classes;
+            }
+
+            public String getKhasem() {
+                return khasem;
+            }
+
+            public void setKhasem(String khasem) {
+                this.khasem = khasem;
+            }
+
+            public String getSifa() {
+                return sifa;
+            }
+
+            public void setSifa(String sifa) {
+                this.sifa = sifa;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public void setid(int id) {
+                this.id = id;
+            }
         }
 
-//----------------------------------------------------------------------------------------------------------------------------
-
-        public int getId() {
-            return id;
-        }
-
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
-        }
-
-        public String getLastFather() {
-            return lastFather;
-        }
-
-        public String getKhasem(){
-            return khasem;
-        }
-
-        public String getClasses(){
-            return classes;
-        }
-
-        public String getSujet(){
-            return sujet;
-        }
-
-        public String getCouse(){
-            return couse;
-        }
-
-        public String getDate(){
-            return date;
-        }
-
-        public String getRetard(){
-            return retard;
-        }
-
-        public String getLiew(){
-            return liew;
-        }
-
-//-------------------------------------------------------------------------------------------------------------------------
-
-        public void setid(int id) {
-            this.id = id;
-        }
-
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
-
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
-
-        public void setLastFather(String lastFather) {
-            this.lastFather = lastFather;
-        }
-
-        public void setKhasem(String khasem) {
-            this.khasem = khasem;
-        }
-
-        public void setClasses(String classes) {
-            this.classes = classes;
-        }
-
-        public void setSujet(String sujet) {
-            this.sujet = sujet;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-
-        public void setRetard(String retard ) {
-            this.retard = retard;
-        }
-
-        public void setCouse(String couse) {
-            this.couse = couse;
-        }
-
-        public void setLiew(String liew) {
-            this.liew = liew;
-        }
-    }
-
-//-------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------
     private boolean isLiked = false;
 
     @Override
@@ -167,15 +193,12 @@ public class HelloApplication extends Application {
 
         stage.getIcons().add(new Image(HelloApplication.class.getResource("hammer.png").openStream()));
         stage.setTitle("Facelawyer");
-//--------Label of Login------------------------------------------------------------------------------------------
 
-//----------------------------------------------------------------------------------------------------------
+//******************Login**********************************************************************************************************************************
 
         VBox vBox = new VBox(20);
         HBox hBox = new HBox(20);
         GridPane gridPane = new GridPane();
-
-//--------Label of Login------------------------------------------------------------------------------------------
 
         Image log = new Image(HelloApplication.class.getResource("log-in.png").openStream());
         ImageView iLog = new ImageView(log);
@@ -185,10 +208,6 @@ public class HelloApplication extends Application {
         vBox.setAlignment(Pos.CENTER);
         BorderPane.setMargin(vBox, new Insets(20,20,0,20));
         vBox.getChildren().add(iLog);
-
-//----------------------------------------------------------------------------------------------------------
-
-//--------TextFeild----------------------------------------------------------------------------------
 
         TextField nameUser = new TextField();
         nameUser.setId("txt");
@@ -232,13 +251,8 @@ public class HelloApplication extends Application {
         iUtl.setLayoutY(93);
         iPas.setLayoutX(267);
         iPas.setLayoutY(137);
-//--------------------------------------------------------------------------------------------------------------------------------
 
-
-
-
-
-//-------------------------------------------------------------------------------------------------
+//************Animation************************************************************************************************************************************
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(0),
                         new javafx.animation.KeyValue(nameUser.translateXProperty(), 2)),
@@ -273,7 +287,7 @@ public class HelloApplication extends Application {
                         new javafx.animation.KeyValue(passUser.translateXProperty(), 0))
         );
 
-//---Button----------------------------------------------------------------------------------------------
+//****************************************************************************************************************************************************************
 
         VBox vBoxBottom = new VBox(20);
         Button btnLogin = new Button("تسجيل الدخول");
@@ -304,18 +318,13 @@ public class HelloApplication extends Application {
 
                 if (nameUser.getText().equals(passUser.getText())){
 
-
-//-----------befor login----------------------------------------------------------------------------------------------------------
-
+//*********Home Page************************************************************************************************************************************************
 
                     Pane premaire = new Pane();
                     premaire.setId("group");
                     HBox hbox = new HBox();
                     Scene scene3 = new Scene(premaire, 1450, 790);
 
-    //---------home image----------------------------------------------------------------------
-
-        //-----select----------------------------------------------------------------------------
                     Image home;
                     try {
                         home = new Image(HelloApplication.class.getResource("home.png").openStream());
@@ -325,9 +334,7 @@ public class HelloApplication extends Application {
                     ImageView iHome = new ImageView(home);
                     iHome.setFitWidth(32);
                     iHome.setFitHeight(32);
-        //------------------------------------------------------------------------------------------------------
 
-        //-----no select----------------------------------------------------------------------------
                     Image home1;
                     try {
                         home1 = new Image(HelloApplication.class.getResource("home1.png").openStream());
@@ -337,8 +344,6 @@ public class HelloApplication extends Application {
                     ImageView iHome1 = new ImageView(home1);
                     iHome1.setFitWidth(32);
                     iHome1.setFitHeight(32);
-
-        //-----select----------------------------------------------------------------------------
 
                     Image people;
                     try {
@@ -352,8 +357,6 @@ public class HelloApplication extends Application {
                     iPeople.setFitWidth(32);
                     iPeople.setFitHeight(32);
 
-        //-----no select----------------------------------------------------------------------------
-
                     Image people1;
                     try {
                         people1 = new Image(HelloApplication.class.getResource("group2.png").openStream());
@@ -365,11 +368,6 @@ public class HelloApplication extends Application {
                     iPeople1.setFitWidth(32);
                     iPeople1.setFitHeight(32);
 
-
-        //---------------------------------------------------------------------------------------------
-
-        //-----select----------------------------------------------------------------------------
-
                     Image telephone;
                     try {
                         telephone = new Image(HelloApplication.class.getResource("phone1.png").openStream());
@@ -377,12 +375,9 @@ public class HelloApplication extends Application {
                         throw new RuntimeException(e);
                     }
 
-
                     ImageView iTelephone = new ImageView(telephone);
                     iTelephone.setFitWidth(32);
                     iTelephone.setFitHeight(32);
-
-        //-----no select----------------------------------------------------------------------------
 
                     Image telephone1;
                     try {
@@ -394,11 +389,6 @@ public class HelloApplication extends Application {
                     iTelephone1.setFitWidth(32);
                     iTelephone1.setFitHeight(32);
 
-
-        //---------------------------------------------------------------------------------------------
-
-        //-----select----------------------------------------------------------------------------
-
                     Image contract;
                     try {
                         contract = new Image(HelloApplication.class.getResource("contract1.png").openStream());
@@ -408,8 +398,6 @@ public class HelloApplication extends Application {
                     ImageView iContract = new ImageView(contract);
                     iContract.setFitWidth(32);
                     iContract.setFitHeight(32);
-
-        //-----no select----------------------------------------------------------------------------
 
                     Image contract1;
                     try {
@@ -421,13 +409,6 @@ public class HelloApplication extends Application {
                     iContract1.setFitWidth(32);
                     iContract1.setFitHeight(32);
 
-        //---------------------------------------------------------------------------------------------
-
-
-
-        //---------------------------------------------------------------------------------------------
-
-        //-----select----------------------------------------------------------------------------
                     Image temp;
                     try {
                         temp = new Image(HelloApplication.class.getResource("calendar.png").openStream());
@@ -438,7 +419,7 @@ public class HelloApplication extends Application {
                     ImageView iTemp = new ImageView(temp);
                     iTemp.setFitWidth(32);
                     iTemp.setFitHeight(32);
-        //-----no select----------------------------------------------------------------------------
+
                     Image temp1;
                     try {
                         temp1 = new Image(HelloApplication.class.getResource("calendar1.png").openStream());
@@ -448,7 +429,6 @@ public class HelloApplication extends Application {
                     ImageView iTemp1 = new ImageView(temp1);
                     iTemp1.setFitWidth(32);
                     iTemp1.setFitHeight(32);
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
                     Image profil;
                     try {
@@ -461,14 +441,12 @@ public class HelloApplication extends Application {
                     iProfil.setFitWidth(50);
                     iProfil.setFitHeight(50);
 
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
                     ToggleButton btnHome = new ToggleButton();
                     btnHome.setGraphic(iHome);
                     btnHome.setSelected(true);
                     btnHome.setLayoutX(850);
                     btnHome.setLayoutY(30);
-                    //btnHome.setGraphic(iHome);
                     btnHome.setStyle("-fx-background-color: transparent");
                     btnHome.setId("btnPar");
                     btnHome.setOnAction(new EventHandler<ActionEvent>() {
@@ -478,7 +456,6 @@ public class HelloApplication extends Application {
                             stage.show();
                         }
                     });
-
 
                     ToggleButton btnTelephone = new ToggleButton();
                     btnTelephone.setGraphic(iTelephone);
@@ -499,7 +476,6 @@ public class HelloApplication extends Application {
                     btnContract.setSelected(true);
                     btnContract.setLayoutX(400);
                     btnContract.setLayoutY(30);
-                    //btnContract.setGraphic(iContract);
                     btnContract.setStyle("-fx-background-color: transparent");
                     btnContract.setId("btnPar");
 
@@ -507,7 +483,6 @@ public class HelloApplication extends Application {
                     btnTemp.setGraphic(iTemp);
                     btnTemp.setLayoutX(250);
                     btnTemp.setLayoutY(30);
-                    //btnTemp.setGraphic(iTemp);
                     btnTemp.setStyle("-fx-background-color: transparent");
                     btnTemp.setId("btnPar");
 
@@ -515,11 +490,8 @@ public class HelloApplication extends Application {
                     btnProfil.setGraphic(iProfil);
                     btnProfil.setLayoutX(75);
                     btnProfil.setLayoutY(20);
-                    //btnTemp.setGraphic(iTemp);
                     btnProfil.setStyle("-fx-background-color: transparent");
                     btnProfil.setId("btnPar");
-
-
 
                     ToggleGroup group = new ToggleGroup();
                     btnContract.setToggleGroup(group);
@@ -577,15 +549,10 @@ public class HelloApplication extends Application {
                         }
                     });
 
-
-//---------------------------------------------------------------------------------------------
-
                     btnTemp.setLayoutX(250);
                     btnTemp.setLayoutY(30);
                     btnTemp.setGraphic(iTemp);
                     btnTemp.setStyle("-fx-background-color: transparent");
-
-
 
                     Button btnLogo = new Button();
 
@@ -636,7 +603,6 @@ public class HelloApplication extends Application {
                         });
                     });
 
-
                     Button a8 = new Button("Log out");
 
                     vbox.setPadding(new Insets(20,20,20,20));
@@ -652,7 +618,6 @@ public class HelloApplication extends Application {
 
                     Font font = Font.font("Amiri Quran",17);
 
-
                     Label qurane = new Label("بسم الله الرحمن الرحيم");
                     qurane.setId("Qurane");
                     qurane.setLayoutX(500);
@@ -665,10 +630,6 @@ public class HelloApplication extends Application {
                     qurane1.setId("Qurane");
                     qurane1.setFont(font);
 
-                    //____________________________________________________________________
-
-                    //_____________________________________________________________
-
                     Button m100 = new Button("المواعيد");
                     m100.setId("btnRapid");
                     m100.setLayoutX(800);
@@ -677,7 +638,7 @@ public class HelloApplication extends Application {
                     m11.setId("btnRapid");
                     m11.setLayoutX(550);
                     m11.setLayoutY(330);
-                    Button m2 = new Button("إدارة الموكلين");
+                    Button m2 = new Button("إدارة القضايا");
                     m2.setId("btnRapid");
                     m2.setLayoutX(300);
                     m2.setLayoutY(330);
@@ -688,10 +649,6 @@ public class HelloApplication extends Application {
                             HBox hboxM1 = new HBox();
                             Scene sceneM1 = new Scene(groupM1,1450, 790);
 
-                            //Button add = new Button("")
-
-
-                            //-----select----------------------------------------------------------------------------
                             Image home;
                             try {
                                 home = new Image(HelloApplication.class.getResource("home.png").openStream());
@@ -701,9 +658,7 @@ public class HelloApplication extends Application {
                             ImageView iHome = new ImageView(home);
                             iHome.setFitWidth(32);
                             iHome.setFitHeight(32);
-                            //------------------------------------------------------------------------------------------------------
 
-                            //-----no select----------------------------------------------------------------------------
                             Image home1;
                             try {
                                 home1 = new Image(HelloApplication.class.getResource("home1.png").openStream());
@@ -714,8 +669,6 @@ public class HelloApplication extends Application {
                             iHome1.setFitWidth(32);
                             iHome1.setFitHeight(32);
 
-                            //-----select----------------------------------------------------------------------------
-
                             Image people;
                             try {
                                 people = new Image(HelloApplication.class.getResource("group1.png").openStream());
@@ -723,12 +676,9 @@ public class HelloApplication extends Application {
                                 throw new RuntimeException(e);
                             }
 
-
                             ImageView iPeople = new ImageView(people);
                             iPeople.setFitWidth(32);
                             iPeople.setFitHeight(32);
-
-                            //-----no select----------------------------------------------------------------------------
 
                             Image people1;
                             try {
@@ -741,11 +691,6 @@ public class HelloApplication extends Application {
                             iPeople1.setFitWidth(32);
                             iPeople1.setFitHeight(32);
 
-
-                            //---------------------------------------------------------------------------------------------
-
-                            //-----select----------------------------------------------------------------------------
-
                             Image telephone;
                             try {
                                 telephone = new Image(HelloApplication.class.getResource("phone1.png").openStream());
@@ -753,12 +698,9 @@ public class HelloApplication extends Application {
                                 throw new RuntimeException(e);
                             }
 
-
                             ImageView iTelephone = new ImageView(telephone);
                             iTelephone.setFitWidth(32);
                             iTelephone.setFitHeight(32);
-
-                            //-----no select----------------------------------------------------------------------------
 
                             Image telephone1;
                             try {
@@ -770,11 +712,6 @@ public class HelloApplication extends Application {
                             iTelephone1.setFitWidth(32);
                             iTelephone1.setFitHeight(32);
 
-
-                            //---------------------------------------------------------------------------------------------
-
-                            //-----select----------------------------------------------------------------------------
-
                             Image contract;
                             try {
                                 contract = new Image(HelloApplication.class.getResource("contract1.png").openStream());
@@ -784,8 +721,6 @@ public class HelloApplication extends Application {
                             ImageView iContract = new ImageView(contract);
                             iContract.setFitWidth(32);
                             iContract.setFitHeight(32);
-
-                            //-----no select----------------------------------------------------------------------------
 
                             Image contract1;
                             try {
@@ -797,13 +732,6 @@ public class HelloApplication extends Application {
                             iContract1.setFitWidth(32);
                             iContract1.setFitHeight(32);
 
-                            //---------------------------------------------------------------------------------------------
-
-
-
-                            //---------------------------------------------------------------------------------------------
-
-                            //-----select----------------------------------------------------------------------------
                             Image temp;
                             try {
                                 temp = new Image(HelloApplication.class.getResource("calendar.png").openStream());
@@ -814,7 +742,7 @@ public class HelloApplication extends Application {
                             ImageView iTemp = new ImageView(temp);
                             iTemp.setFitWidth(32);
                             iTemp.setFitHeight(32);
-                            //-----no select----------------------------------------------------------------------------
+
                             Image temp1;
                             try {
                                 temp1 = new Image(HelloApplication.class.getResource("calendar1.png").openStream());
@@ -824,7 +752,6 @@ public class HelloApplication extends Application {
                             ImageView iTemp1 = new ImageView(temp1);
                             iTemp1.setFitWidth(32);
                             iTemp1.setFitHeight(32);
-                            //---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
                             Image profil;
                             try {
@@ -837,14 +764,11 @@ public class HelloApplication extends Application {
                             iProfil.setFitWidth(50);
                             iProfil.setFitHeight(50);
 
-                            //---------------------------------------------------------------------------------------------------------------------------------------------------------------
-
                             ToggleButton btnHome = new ToggleButton();
                             btnHome.setGraphic(iHome);
                             btnHome.setSelected(true);
                             btnHome.setLayoutX(850);
                             btnHome.setLayoutY(30);
-                            //btnHome.setGraphic(iHome);
                             btnHome.setStyle("-fx-background-color: transparent");
                             btnHome.setId("btnPar");
 
@@ -868,7 +792,6 @@ public class HelloApplication extends Application {
                             btnContract.setSelected(true);
                             btnContract.setLayoutX(400);
                             btnContract.setLayoutY(30);
-                            //btnContract.setGraphic(iContract);
                             btnContract.setStyle("-fx-background-color: transparent");
                             btnContract.setId("btnPar");
 
@@ -876,7 +799,6 @@ public class HelloApplication extends Application {
                             btnTemp.setGraphic(iTemp);
                             btnTemp.setLayoutX(250);
                             btnTemp.setLayoutY(30);
-                            //btnTemp.setGraphic(iTemp);
                             btnTemp.setStyle("-fx-background-color: transparent");
                             btnTemp.setId("btnPar");
 
@@ -884,11 +806,8 @@ public class HelloApplication extends Application {
                             btnProfil.setGraphic(iProfil);
                             btnProfil.setLayoutX(75);
                             btnProfil.setLayoutY(20);
-                            //btnTemp.setGraphic(iTemp);
                             btnProfil.setStyle("-fx-background-color: transparent");
                             btnProfil.setId("btnPar");
-
-
 
                             ToggleGroup group = new ToggleGroup();
                             btnContract.setToggleGroup(group);
@@ -929,9 +848,7 @@ public class HelloApplication extends Application {
 
                             btnContract.setOnAction(event -> {
                                 if (btnContract.isSelected()) {
-
                                     btnTelephone.setGraphic(iTelephone);
-
                                     btnHome.setGraphic(iHome1);
                                     btnPeople.setGraphic(iPeople);
                                     btnTemp.setGraphic(iTemp);
@@ -940,9 +857,7 @@ public class HelloApplication extends Application {
                             });
                             btnTemp.setOnAction(event -> {
                                 if (btnTemp.isSelected()) {
-
                                     btnTelephone.setGraphic(iTelephone);
-
                                     btnHome.setGraphic(iHome1);
                                     btnPeople.setGraphic(iPeople);
                                     btnContract.setGraphic(iContract);
@@ -963,83 +878,84 @@ public class HelloApplication extends Application {
                             delClient.setLayoutX(280);
                             delClient.setLayoutY(150);
 
-
-
                             regClient.setId("btnregClient");
                             regClient.setLayoutX(530);
                             regClient.setLayoutY(150);
 
-
                             TableView<Person> tableView = new TableView<>();
 
-                            TableColumn<Person, Integer> idColumn = new TableColumn<>("رقم القضية");
-                            idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-                            idColumn.setPrefWidth(100);
-                            idColumn.setStyle("-fx-alignment: CENTER;");
+                            TableView<Person> table = new TableView<Person>();
 
-                            TableColumn<Person, String> firstNameColumn = new TableColumn<>("لقب الموكل");
-                            firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-                            firstNameColumn.setPrefWidth(110);
-                            firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-                            firstNameColumn.setOnEditCommit(event -> {
-                                Person person = event.getRowValue();
-                                person.setFirstName(event.getNewValue());
-                            });
-                            firstNameColumn.setStyle("-fx-alignment: CENTER;");
-
-                            TableColumn<Person, String> lastNameColumn = new TableColumn<>("اسم الموكل");
+                            TableColumn<Person, String> lastNameColumn = new TableColumn<>("إسم الموكل");
                             lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-                            lastNameColumn.setPrefWidth(110);
+                            lastNameColumn.prefWidthProperty().set(100);
                             lastNameColumn.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> lastFatherColumn = new TableColumn<>("اسم اب الموكل");
-                            lastFatherColumn.setCellValueFactory(new PropertyValueFactory<>("lastFather"));
-                            lastFatherColumn.setPrefWidth(110);
-                            lastFatherColumn.setStyle("-fx-alignment: CENTER;");
+                            TableColumn<Person, String> firstNameCol = new TableColumn<Person, String>("لقب الموكل");
+                            firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+                            firstNameCol.prefWidthProperty().set(100);
+                            firstNameCol.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> khasemColumn = new TableColumn<>("الخصم");
-                            khasemColumn.setCellValueFactory(new PropertyValueFactory<>("khasem"));
-                            khasemColumn.setPrefWidth(120);
-                            khasemColumn.setStyle("-fx-alignment: CENTER;");
+                            TableColumn<Person, String> jihaCol = new TableColumn<Person, String>("الجهة القضائية");
+                            jihaCol.setCellValueFactory(new PropertyValueFactory<Person, String>("jiha"));
+                            jihaCol.prefWidthProperty().set(100);
+                            jihaCol.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> classesColumn = new TableColumn<>("القسم أو الغرفة");
-                            classesColumn.setCellValueFactory(new PropertyValueFactory<>("classes"));
-                            classesColumn.setPrefWidth(120);
-                            classesColumn.setStyle("-fx-alignment: CENTER;");
+                            TableColumn<Person, String> lieuCol = new TableColumn<Person, String>("مكان الجلسة");
+                            lieuCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lieu"));
+                            lieuCol.prefWidthProperty().set(100);
+                            lieuCol.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> sujetColumn = new TableColumn<>("موضوع القضية");
-                            sujetColumn.setCellValueFactory(new PropertyValueFactory<>("sujet"));
-                            sujetColumn.setPrefWidth(198);
-                            sujetColumn.setStyle("-fx-alignment: CENTER;");
+                            TableColumn<Person, String> couseCol = new TableColumn<Person, String>("سبب التأجيل");
+                            couseCol.setCellValueFactory(new PropertyValueFactory<Person, String>("couse"));
+                            couseCol.prefWidthProperty().set(100);
+                            couseCol.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> dateColumn = new TableColumn<>("تاريخ الجلسة");
-                            dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-                            dateColumn.setPrefWidth(100);
-                            dateColumn.setStyle("-fx-alignment: CENTER;");
+                            TableColumn<Person, LocalDate> retardCol = new TableColumn<Person, LocalDate>("تأجيل الجلسة");
+                            retardCol.setCellValueFactory(new PropertyValueFactory<Person, LocalDate>("retard"));
+                            retardCol.prefWidthProperty().set(100);
+                            retardCol.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> retardColumn = new TableColumn<>("تاريح التأجيل");
-                            retardColumn.setCellValueFactory(new PropertyValueFactory<>("retard"));
-                            retardColumn.setPrefWidth(100);
-                            retardColumn.setStyle("-fx-alignment: CENTER;");
+                            TableColumn<Person, LocalDate> dateCol = new TableColumn<Person, LocalDate>("تاريخ الجلسة");
+                            dateCol.setCellValueFactory(new PropertyValueFactory<Person, LocalDate>("date"));
+                            dateCol.prefWidthProperty().set(100);
+                            dateCol.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> couseColumn = new TableColumn<>("سبب التأجيل");
-                            couseColumn.setCellValueFactory(new PropertyValueFactory<>("couse"));
-                            couseColumn.setPrefWidth(120);
-                            couseColumn.setStyle("-fx-alignment: CENTER;");
+                            TableColumn<Person, String> sujetCol = new TableColumn<Person, String>("الموضوع");
+                            sujetCol.setCellValueFactory(new PropertyValueFactory<Person, String>("sujet"));
+                            sujetCol.prefWidthProperty().set(107);
+                            sujetCol.setStyle("-fx-alignment: CENTER;");
 
-                            TableColumn<Person, String> liewColumn = new TableColumn<>("مكان الجلسة");
-                            liewColumn.setCellValueFactory(new PropertyValueFactory<>("liew"));
-                            liewColumn.setPrefWidth(120);
-                            liewColumn.setStyle("-fx-alignment: CENTER;");
+                            TableColumn<Person, String> classesCol = new TableColumn<Person, String>("القسم او الغرفة");
+                            classesCol.setCellValueFactory(new PropertyValueFactory<Person, String>("classes"));
+                            classesCol.prefWidthProperty().set(100);
+                            classesCol.setStyle("-fx-alignment: CENTER;");
 
-                            tableView.getColumns().addAll(liewColumn,couseColumn,retardColumn,dateColumn,sujetColumn,classesColumn,khasemColumn,lastFatherColumn,lastNameColumn,firstNameColumn,idColumn);
+                            TableColumn<Person, String> khasemCol = new TableColumn<Person, String>("الخصم");
+                            khasemCol.setCellValueFactory(new PropertyValueFactory<Person, String>("khasem"));
+                            khasemCol.prefWidthProperty().set(100);
+                            khasemCol.setStyle("-fx-alignment: CENTER;");
 
+                            TableColumn<Person, String> sifaCol = new TableColumn<Person, String>("صفة الموكل");
+                            sifaCol.setCellValueFactory(new PropertyValueFactory<Person, String>("sifa"));
+                            sifaCol.prefWidthProperty().set(100);
+                            sifaCol.setStyle("-fx-alignment: CENTER;");
 
-                            //ObservableList<Person> originalPersonData = FXCollections.observableArrayList();
+                            TableColumn<Person, Integer> idCol = new TableColumn<Person, Integer>("رقم القضية");
+                            idCol.setCellValueFactory(new PropertyValueFactory<Person, Integer>("id"));
+                            idCol.prefWidthProperty().set(100);
+                            idCol.setStyle("-fx-alignment: CENTER;");
+
+                            TableColumn<Person, String> lastFatherCol = new TableColumn<>("إسم الأب");
+                            lastFatherCol.setCellValueFactory(new PropertyValueFactory<Person, String>("lastFather"));
+                            lastFatherCol.prefWidthProperty().set(100);
+                            lastFatherCol.setStyle("-fx-alignment: CENTER;");
+
+                            tableView.getColumns().addAll(jihaCol,lieuCol,couseCol,retardCol,dateCol,sujetCol,classesCol,khasemCol,sifaCol,lastFatherCol,lastNameColumn,firstNameCol,idCol);
 
                             ObservableList<Person> data = FXCollections.observableArrayList(
-                                    new Person("rida sid ahmed rue 360","kamel","maroin","khaled","jenah", "kkkkkkkkk" ,"2023/2/2", "20/2/2024","mmmmmmm","kjkjkj",1),
-                                    new Person("rida","kamel2","maroin2","khaled2","jenah2", "kkkkkkkkk2" ,"2023/2/22", "20/02/2024","mmmmmmm2","kjkjkj2",2)
+                                    new Person("jjjjjj","Paris", "Math"  ,LocalDate.of(1990, 5, 15),LocalDate.of(1990, 5, 15),"hh" ,"Algebra","10A","John Doe","اب","اسم","لقب",123456789),
+                                    new Person("dsff","rida","kamel2", LocalDate.of(1990, 5, 15),LocalDate.of(1990, 5, 15),"jenah2", "kkkkkkkkk2" ,"2023/2/22", "dfghjkl","20/02/2024","mmmmmmm2","kjkjkj2",2)
                             );
 
                             tableView.setItems(data);
@@ -1052,86 +968,576 @@ public class HelloApplication extends Application {
                             searchField.setLayoutY(155);
 
                             Stack<Person> deletedPersons = new Stack<>();
-                            Stack<Person> modifyPersons = new Stack<>();
-
+//**********del button*****************************************************************************************************************************************
                             delClient.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent actionEvent) {
-                                    delClient.setOnAction((ActionEvent event) -> {
-                                        Person person = tableView.getSelectionModel().getSelectedItem();
-                                        if (person != null) {
-                                            data.remove(person);
-                                            deletedPersons.push(person);
+                                    Person selectedPerson = tableView.getSelectionModel().getSelectedItem();
+                                    if (selectedPerson == null) {
+                                        // If no person is selected, display an error message
+                                        Alert alert = new Alert(Alert.AlertType.ERROR, "من فضلك اختر قضية لحذفها.");
+                                        alert.showAndWait();
+                                    }else{
+                                        delClient.setOnAction((ActionEvent event) -> {
+                                            Person person = tableView.getSelectionModel().getSelectedItem();
+                                            if (person != null) {
+                                                data.remove(person);
+                                                deletedPersons.push(person);
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+//*********modity button*****************************************************************************************************************************************
+                            regClient.setOnAction(event -> {
+                                // Get the selected person from the table view
+                                Person selectedPerson = tableView.getSelectionModel().getSelectedItem();
+                                if (selectedPerson == null) {
+                                    // If no person is selected, display an error message
+                                    Alert alert = new Alert(Alert.AlertType.ERROR, "من فضلك اختر قضية للتعديل عليها.");
+                                    alert.showAndWait();
+                                } else {
+
+
+                                    // Create a new stage for modifying the person
+                                    Stage modifyStage = new Stage();
+                                    BoxBlur blur = new BoxBlur();
+                                    blur.setWidth(10);
+                                    blur.setHeight(10);
+                                    blur.setIterations(3);
+                                    stage.getScene().getRoot().setEffect(blur);
+
+                                    GridPane formPane = new GridPane();
+                                    formPane.setPadding(new Insets(20 ,20, 20, 20));
+                                    formPane.setHgap(20);
+                                    formPane.setVgap(20);
+                                    modifyStage.initStyle(StageStyle.UNDECORATED);
+                                    // Add fields for each attribute of the Person class
+                                    ObservableList<String> jihaOptions = FXCollections.observableArrayList(
+                                            "المحكمة", "المحكمة العليا", "المحكمة الإدارية","المحكمة العسكرية","محكمة الجنايات","مجلس الدولة"
+                                    );
+                                    ChoiceBox<String> johaField = new ChoiceBox<>(jihaOptions);
+                                    johaField.setValue(selectedPerson.getJiha());
+                                    johaField.setId("feild");
+                                    johaField.setPrefWidth(200);
+
+                                    ObservableList<String> sivaOptions = FXCollections.observableArrayList(
+                                            "المحكمة", "المحكمة العليا", "المحكمة الإدارية","المحكمة العسكرية","محكمة الجنايات","مجلس الدولة"
+                                    );
+                                    ChoiceBox<String> sivaChoiceBox = new ChoiceBox<>(sivaOptions);
+                                    sivaChoiceBox.setValue(selectedPerson.getSifa());
+                                    sivaChoiceBox.setId("feild");
+                                    sivaChoiceBox.setPrefWidth(200);
+
+                                    // create input fields for the person properties
+                                    ObservableList<String> lieuOptions = FXCollections.observableArrayList(
+                                            "محكمة توقرت", "محكمة ورقلة","محكمة الوادي","محكمة الحزائر","محكمة وهران"
+                                    );
+                                    ChoiceBox<String> lieuChoiceBox = new ChoiceBox<>(lieuOptions);
+                                    lieuChoiceBox.setValue(selectedPerson.getLieu());
+                                    lieuChoiceBox.setId("feild");
+                                    lieuChoiceBox.setPrefWidth(200);
+
+                                    ObservableList<String> classesOptions = FXCollections.observableArrayList(
+                                            "عقاري", "تجاري","جزائي","شؤون الاسرة","مدني"
+                                    );
+                                    ChoiceBox<String> classesChoiceBox = new ChoiceBox<>(classesOptions);
+                                    classesChoiceBox.setValue(selectedPerson.getClasses());
+                                    classesChoiceBox.setId("feild");
+                                    classesChoiceBox.setPrefWidth(200);
+
+                                    TextField couseField = new TextField(selectedPerson.getCouse());
+                                    couseField.setId("feild");
+                                    couseField.setPrefWidth(200);
+                                    DatePicker retardField = new DatePicker(selectedPerson.getRetard());
+                                    retardField.setId("feild");
+                                    retardField.setStyle("-fx-background-color: transparent;");
+                                    retardField.setPrefWidth(200);
+                                    DatePicker dateField = new DatePicker(selectedPerson.getDate());
+                                    dateField.setId("feild");
+                                    dateField.setPrefWidth(200);
+                                    TextField sujetField = new TextField(selectedPerson.getSujet());
+                                    sujetField.setId("feild");
+                                    sujetField.setPrefWidth(200);
+                                    TextField khasemChoiceBox = new TextField(selectedPerson.getKhasem());
+                                    khasemChoiceBox.setId("feild");
+                                    khasemChoiceBox.setPrefWidth(200);
+                                    TextField lastFatherField = new TextField(selectedPerson.getLastFather());
+                                    lastFatherField.setId("feild");
+                                    lastFatherField.setPrefWidth(200);
+                                    TextField lastNameField = new TextField(selectedPerson.getLastName());
+                                    lastNameField.setId("feild");
+                                    lastNameField.setPrefWidth(200);
+                                    TextField firstNameField = new TextField(selectedPerson.getFirstName());
+                                    firstNameField.setId("feild");
+                                    firstNameField.setPrefWidth(200);
+                                    TextField idField = new TextField(String.valueOf(selectedPerson.getId()));
+                                    idField.setId("feild");
+                                    idField.setPrefWidth(200);
+
+                                    Label j = new Label("الجهة القضائية : *");
+                                    Label l = new Label("مكان الجلسة : *");
+                                    Label c = new Label("سبب التأجيل :");
+                                    Label r = new Label("تاريخ التأجيل :");
+                                    Label d = new Label("تاريخ الجلسة : *");
+                                    Label s = new Label("الموضوع : *");
+                                    Label cl = new Label("القسم أو الغرفة : *");
+                                    Label k =new Label("الخصم : *");
+                                    Label f =new Label("إسم الأب :");
+                                    Label ls =new Label("إسم الموكل : *");
+                                    Label si =new Label("صفةالموكل : *");
+                                    Label fn =new Label("لقب الموكل : *");
+                                    Label i =new Label("رقم القضية : *");
+
+                                    Pattern pattern = Pattern.compile("\\d*"); // regular expression for digits
+                                    TextFormatter<String> idFormatter = new TextFormatter<>(change -> {
+                                        String newText = change.getControlNewText();
+                                        if (pattern.matcher(newText).matches()) {
+                                            return change;
+                                        } else {
+                                            return null; // reject the change
                                         }
                                     });
+
+                                    j.setId("lable");
+                                    //j.setAlignment(Pos.CENTER);
+                                    formPane.add(j, 3,3);
+                                    formPane.add(johaField, 2,3);
+
+
+                                    l.setId("lable");
+                                    formPane.add(l, 5,3);
+                                    formPane.add(lieuChoiceBox, 4,3);
+
+
+                                    c.setId("lable");
+                                    formPane.add(c, 1,4);
+                                    formPane.add(couseField, 0,4);
+
+
+                                    r.setId("lable");
+                                    formPane.add(r, 3,4);
+                                    formPane.add(retardField, 2,4);
+
+
+                                    d.setId("lable");
+                                    formPane.add(d, 5,4);
+                                    formPane.add(dateField, 4,4);
+
+
+                                    s.setId("lable");
+                                    formPane.add(s, 1,3);
+                                    formPane.add(sujetField, 0,3);
+
+
+                                    cl.setId("lable");
+                                    formPane.add(cl, 1,2);
+                                    formPane.add(classesChoiceBox, 0,2);
+
+
+                                    k.setId("lable");
+                                    formPane.add(k, 3,2);
+                                    formPane.add(khasemChoiceBox, 2,2);
+
+
+                                    f.setId("lable");
+                                    formPane.add(f, 1,1);
+                                    formPane.add(lastFatherField, 0,1);
+
+
+                                    ls.setId("lable");
+                                    formPane.add(ls, 3,1);
+                                    formPane.add(lastNameField, 2,1);
+
+
+                                    si.setId("lable");
+                                    formPane.add(si, 5,2);
+                                    formPane.add(sivaChoiceBox, 4,2);
+
+
+                                    fn.setId("lable");
+                                    formPane.add(fn, 5,1);
+                                    formPane.add(firstNameField, 4,1);
+
+
+                                    i.setId("lable");
+                                    formPane.add(i, 3,0);
+                                    formPane.add(idField, 2,0);
+
+                                    //*************Animation*********************************************************************************************************************************
+
+                                    Timeline timeline = new Timeline(
+                                            new KeyFrame(Duration.seconds(0),
+                                                    new KeyValue(firstNameField.translateXProperty(), 2)),
+                                            new KeyFrame(Duration.seconds(0.125),
+                                                    new KeyValue(firstNameField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.25),
+                                                    new KeyValue(firstNameField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.375),
+                                                    new KeyValue(firstNameField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(firstNameField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.625),
+                                                    new KeyValue(firstNameField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.75),
+                                                    new KeyValue(firstNameField.translateXProperty(), 0))
+                                    );
+
+                                    Timeline timeline1 = new Timeline(
+                                            new KeyFrame(Duration.seconds(0),
+                                                    new KeyValue(idField.translateXProperty(), 2)),
+                                            new KeyFrame(Duration.seconds(0.125),
+                                                    new KeyValue(idField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.25),
+                                                    new KeyValue(idField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.375),
+                                                    new KeyValue(idField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(idField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.625),
+                                                    new KeyValue(idField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.75),
+                                                    new KeyValue(idField.translateXProperty(), 0))
+                                    );
+
+                                    Timeline timeline2 = new Timeline(
+                                            new KeyFrame(Duration.seconds(0),
+                                                    new KeyValue(lastNameField.translateXProperty(), 2)),
+                                            new KeyFrame(Duration.seconds(0.125),
+                                                    new KeyValue(lastNameField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.25),
+                                                    new KeyValue(lastNameField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.375),
+                                                    new KeyValue(lastNameField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(lastNameField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.625),
+                                                    new KeyValue(lastNameField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.75),
+                                                    new KeyValue(lastNameField.translateXProperty(), 0))
+                                    );
+
+                                    Timeline timeline3 = new Timeline(
+                                            new KeyFrame(Duration.seconds(0),
+                                                    new KeyValue(khasemChoiceBox.translateXProperty(), 2)),
+                                            new KeyFrame(Duration.seconds(0.125),
+                                                    new KeyValue(khasemChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.25),
+                                                    new KeyValue(khasemChoiceBox.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.375),
+                                                    new KeyValue(khasemChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(khasemChoiceBox.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.625),
+                                                    new KeyValue(khasemChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.75),
+                                                    new KeyValue(khasemChoiceBox.translateXProperty(), 0))
+                                    );
+
+                                    Timeline timeline8 = new Timeline(
+                                            new KeyFrame(Duration.seconds(0),
+                                                    new KeyValue(sujetField.translateXProperty(), 2)),
+                                            new KeyFrame(Duration.seconds(0.125),
+                                                    new KeyValue(sujetField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.25),
+                                                    new KeyValue(sujetField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.375),
+                                                    new KeyValue(sujetField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(sujetField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.625),
+                                                    new KeyValue(sujetField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.75),
+                                                    new KeyValue(sujetField.translateXProperty(), 0))
+                                    );
+
+                                    Timeline timeline9 = new Timeline(
+                                            new KeyFrame(Duration.seconds(0),
+                                                    new KeyValue(dateField.translateXProperty(), 2)),
+                                            new KeyFrame(Duration.seconds(0.125),
+                                                    new KeyValue(dateField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.25),
+                                                    new KeyValue(dateField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.375),
+                                                    new KeyValue(dateField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(dateField.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.625),
+                                                    new KeyValue(dateField.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.75),
+                                                    new KeyValue(dateField.translateXProperty(), 0))
+                                    );
+
+                                    // Add a save button to save the changes
+                                    Button saveButton = new Button("حفظ التعديلات");
+                                    saveButton.setId("btnregClient");
+                                    saveButton.setOnAction(saveEvent -> {
+
+                                        selectedPerson.setJiha(johaField.getValue());
+                                        selectedPerson.setSifa(sivaChoiceBox.getValue());
+                                        selectedPerson.setLieu(lieuChoiceBox.getValue());
+                                        selectedPerson.setCouse(couseField.getText());
+                                        selectedPerson.setRetard(retardField.getValue());
+                                        selectedPerson.setDate(dateField.getValue());
+                                        selectedPerson.setSujet(sujetField.getText());
+                                        selectedPerson.setClasses(classesChoiceBox.getValue());
+                                        selectedPerson.setKhasem(khasemChoiceBox.getText());
+                                        selectedPerson.setLastFather(lastFatherField.getText());
+                                        selectedPerson.setLastName(lastNameField.getText());
+                                        selectedPerson.setnewFirstName(firstNameField.getText());
+                                        try {
+                                            selectedPerson.setid(Integer.parseInt(idField.getText()));
+                                        } catch (NumberFormatException e) {
+                                            // If the ID field contains invalid input, display an error message
+                                            Alert alert = new Alert(Alert.AlertType.ERROR, "من فضلك اختر شخص للتعديل عليه.");
+                                            alert.showAndWait();
+                                            return;
+                                        }
+
+                                        if (idField.getText().isEmpty()) {
+                                            idField.setStyle("-fx-border-color: red");
+                                            i.setStyle("-fx-text-fill: red");
+                                            timeline1.play();
+
+                                        } else {
+                                            idField.setStyle("-fx-border-color: #2C9344");
+                                            i.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (lastFatherField.getText().isEmpty()) {
+                                            lastFatherField.setStyle("-fx-border-color: black");
+                                            f.setStyle("-fx-text-fill: black");
+
+                                        } else {
+                                            lastFatherField.setStyle("-fx-border-color: #2C9344");
+                                            f.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (retardField.getValue()== null) {
+                                            retardField.setStyle("-fx-border-color: black");
+                                            r.setStyle("-fx-text-fill: black");
+
+                                        } else {
+                                            retardField.setStyle("-fx-border-color: #2C9344");
+                                            r.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (couseField.getText().isEmpty()) {
+                                            couseField.setStyle("-fx-border-color: black");
+                                            c.setStyle("-fx-text-fill: black");
+
+                                        } else {
+                                            couseField.setStyle("-fx-border-color: #2C9344");
+                                            c.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (firstNameField.getText().isEmpty()) {
+                                            firstNameField.setStyle("-fx-border-color: red");
+                                            fn.setStyle("-fx-text-fill: red");
+                                            timeline.play();
+
+                                        } else {
+                                            firstNameField.setStyle("-fx-border-color: #2C9344");
+                                            fn.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (lastNameField.getText().isEmpty()) {
+                                            lastNameField.setStyle("-fx-border-color: red");
+                                            timeline2.play();
+                                            ls.setStyle("-fx-text-fill: red");
+
+                                        } else {
+                                            lastNameField.setStyle("-fx-border-color: #2C9344");
+                                            ls.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (sivaChoiceBox.getValue() == null) {
+                                            // Create a timeline with two key frames that rotate the choice box back and forth
+                                            Timeline timeline4 = new Timeline(
+                                                    new KeyFrame(Duration.seconds(0),
+                                                            new KeyValue(sivaChoiceBox.translateXProperty(), 2)),
+                                                    new KeyFrame(Duration.seconds(0.125),
+                                                            new KeyValue(sivaChoiceBox.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.25),
+                                                            new KeyValue(sivaChoiceBox.translateXProperty(), +5)),
+                                                    new KeyFrame(Duration.seconds(0.375),
+                                                            new KeyValue(sivaChoiceBox.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.5),
+                                                            new KeyValue(sivaChoiceBox.translateXProperty(), +5)),
+                                                    new KeyFrame(Duration.seconds(0.625),
+                                                            new KeyValue(sivaChoiceBox.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.75),
+                                                            new KeyValue(sivaChoiceBox.translateXProperty(), 0))
+                                            );
+                                            // Set the border color of the choice box to red
+                                            sivaChoiceBox.setStyle("-fx-border-color: red;");
+                                            si.setStyle("-fx-text-fill: red;");
+                                            // Start the timeline animation
+                                            timeline4.play();
+
+                                        } else {
+                                            // Set the border color of the choice box to #2C9344
+                                            sivaChoiceBox.setStyle("-fx-border-color: #2C9344;");
+                                            si.setStyle("-fx-text-fill: #2C9344;");
+                                        }
+
+                                        if (khasemChoiceBox.getText().isEmpty()) {
+                                            khasemChoiceBox.setStyle("-fx-border-color: red");
+                                            k.setStyle("-fx-text-fill: red");
+                                            timeline3.play();
+
+                                        } else {
+                                            khasemChoiceBox.setStyle("-fx-border-color: #2C9344");
+                                            k.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (classesChoiceBox.getValue() == null) {
+                                            // Create a timeline with two key frames that rotate the choice box back and forth
+                                            Timeline timeline5 = new Timeline(
+                                                    new KeyFrame(Duration.seconds(0),
+                                                            new KeyValue(classesChoiceBox.translateXProperty(), 2)),
+                                                    new KeyFrame(Duration.seconds(0.125),
+                                                            new KeyValue(classesChoiceBox.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.25),
+                                                            new KeyValue(classesChoiceBox.translateXProperty(), +5)),
+                                                    new KeyFrame(Duration.seconds(0.375),
+                                                            new KeyValue(classesChoiceBox.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.5),
+                                                            new KeyValue(classesChoiceBox.translateXProperty(), +5)),
+                                                    new KeyFrame(Duration.seconds(0.625),
+                                                            new KeyValue(classesChoiceBox.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.75),
+                                                            new KeyValue(classesChoiceBox.translateXProperty(), 0))
+                                            );
+                                            // Set the border color of the choice box to red
+                                            classesChoiceBox.setStyle("-fx-border-color: red;");
+                                            cl.setStyle("-fx-text-fill: red;");
+                                            // Start the timeline animation
+                                            timeline5.play();
+
+                                        } else {
+                                            // Set the border color of the choice box to #2C9344
+                                            classesChoiceBox.setStyle("-fx-border-color: #2C9344;");
+                                            cl.setStyle("-fx-text-fill: #2C9344;");
+                                        }
+
+
+                                        if (lieuChoiceBox.getValue() == null) {
+                                            // Create a timeline with two key frames that rotate the choice box back and forth
+                                            Timeline timeline6 = new Timeline(
+                                                    new KeyFrame(Duration.seconds(0),
+                                                            new KeyValue(lieuChoiceBox.translateXProperty(), 2)),
+                                                    new KeyFrame(Duration.seconds(0.125),
+                                                            new KeyValue(lieuChoiceBox.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.25),
+                                                            new KeyValue(lieuChoiceBox.translateXProperty(), +5)),
+                                                    new KeyFrame(Duration.seconds(0.375),
+                                                            new KeyValue(lieuChoiceBox.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.5),
+                                                            new KeyValue(lieuChoiceBox.translateXProperty(), +5)),
+                                                    new KeyFrame(Duration.seconds(0.625),
+                                                            new KeyValue(lieuChoiceBox.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.75),
+                                                            new KeyValue(lieuChoiceBox.translateXProperty(), 0))
+                                            );
+                                            // Set the border color of the choice box to red
+                                            lieuChoiceBox.setStyle("-fx-border-color: red;");
+                                            l.setStyle("-fx-text-fill: red;");
+                                            // Start the timeline animation
+                                            timeline6.play();
+
+                                        } else {
+                                            // Set the border color of the choice box to #2C9344
+                                            lieuChoiceBox.setStyle("-fx-border-color: #2C9344;");
+                                            l.setStyle("-fx-text-fill: #2C9344;");
+                                        }
+
+                                        if (johaField.getValue() == null) {
+                                            // Create a timeline with two key frames that rotate the choice box back and forth
+                                            Timeline timeline7 = new Timeline(
+                                                    new KeyFrame(Duration.seconds(0),
+                                                            new KeyValue(johaField.translateXProperty(), 2)),
+                                                    new KeyFrame(Duration.seconds(0.125),
+                                                            new KeyValue(johaField.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.25),
+                                                            new KeyValue(johaField.translateXProperty(), +5)),
+                                                    new KeyFrame(Duration.seconds(0.375),
+                                                            new KeyValue(johaField.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.5),
+                                                            new KeyValue(johaField.translateXProperty(), +5)),
+                                                    new KeyFrame(Duration.seconds(0.625),
+                                                            new KeyValue(johaField.translateXProperty(), -5)),
+                                                    new KeyFrame(Duration.seconds(0.75),
+                                                            new KeyValue(johaField.translateXProperty(), 0))
+                                            );
+                                            // Set the border color of the choice box to red
+                                            johaField.setStyle("-fx-border-color: red;");
+                                            j.setStyle("-fx-text-fill: red;");
+                                            // Start the timeline animation
+                                            timeline7.play();
+
+                                        } else {
+                                            // Set the border color of the choice box to black
+                                            johaField.setStyle("-fx-border-color: #2C9344;");
+                                            j.setStyle("-fx-text-fill: #2C9344;");
+                                        }
+
+                                        if (sujetField.getText().isEmpty()) {
+                                            sujetField.setStyle("-fx-border-color: red");
+                                            s.setStyle("-fx-text-fill: red");
+                                            timeline8.play();
+
+                                        } else {
+                                            sujetField.setStyle("-fx-border-color: #2C9344");
+                                            s.setStyle("-fx-text-fill: #2C9344");
+                                        }
+                                        if (dateField.getValue()== null) {
+                                            dateField.setStyle("-fx-border-color: red");
+                                            d.setStyle("-fx-text-fill: red");
+                                            timeline9.play();
+
+                                        } else {
+                                            dateField.setStyle("-fx-border-color: #2C9344");
+                                            d.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (!idField.getText().isEmpty() && !firstNameField.getText().isEmpty() && !lastNameField.getText().isEmpty() && sivaChoiceBox.getValue() != null && !khasemChoiceBox.getText().isEmpty() && classesChoiceBox.getValue() != null && lieuChoiceBox.getValue() != null && johaField.getValue() != null && !sujetField.getText().isEmpty() && dateField.getValue() != null){
+                                            // retrieve the values from the input fields
+                                            // Update the person's details with the values from the form
+
+                                            // Close the modify stage
+                                            modifyStage.close();
+                                            // Refresh the table view to show the updated person
+                                            tableView.refresh();
+
+                                        }
+                                    });
+
+                                    Button qutButton = new Button("إلغاء");
+                                    qutButton.setId("btnqut");
+                                    qutButton.setOnAction(new EventHandler<ActionEvent>() {
+                                        @Override
+                                        public void handle(ActionEvent actionEvent) {
+                                            modifyStage.close();
+                                            stage.getScene().getRoot().setEffect(null);
+                                        }
+
+                                    });
+
+                                    // Add the form and save button to the modify stage
+                                    formPane.add(saveButton, 2,5);
+                                    formPane.add(qutButton, 4,5);
+                                    formPane.setId("grid");
+                                    Scene modifyScene = new Scene(formPane);
+                                    modifyScene.getStylesheets().add(HelloApplication.class.getResource("regClient.css").toExternalForm());
+                                    // Show the modify stage
+
+                                    modifyStage.setScene(modifyScene);
+                                    modifyStage.show();
                                 }
                             });
 
-
-                            regClient.setOnAction(event -> {
-                                TablePosition<Person, ?> pos = tableView.getSelectionModel().getSelectedCells().get(0);
-                                int row = pos.getRow();
-                                TableColumn<Person, ?> col = pos.getTableColumn();
-                                int colIndex = tableView.getColumns().indexOf(col);
-
-                                TextInputDialog dialog = new TextInputDialog(col.getCellData(row).toString());
-                                dialog.setHeaderText("Modify Cell");
-                                dialog.setContentText("Enter new value:");
-                                Optional<String> result = dialog.showAndWait();
-                                result.ifPresent(value -> {
-                                    Person person = tableView.getItems().get(row);
-                                    if (colIndex == 9) {
-                                        person.setFirstName(value);
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 8) {
-                                        person.setLastName(value);
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 10) {
-                                        person.setid(Integer.parseInt(value));
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 7) {
-                                        person.setLastFather(value);
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 6) {
-                                        person.setKhasem(value);
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 5) {
-                                        person.setClasses(value);
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 4) {
-                                        person.setSujet(value);
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 3) {
-                                        person.setDate(value);
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 2) {
-                                        person.setRetard(value);
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 1) {
-                                        person.setCouse(value);
-                                        modifyPersons.push(person);
-                                    } else if (colIndex == 0) {
-                                        person.setLiew(value);
-                                        modifyPersons.push(person);
-                                    }
-
-                                    tableView.setItems(data);
-                                    // Disable back button
-                                    regClient.setDisable(true);
-                                    // Clear selection
-                                    tableView.getSelectionModel().clearSelection();
-                                    // Refresh the TableView to reflect the changes
-                                    tableView.refresh();
-                                });
-
-                                regClient.setDisable(true);
-
-                                tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-                                    regClient.setDisable(newSelection == null);
-
-                                });
-
-                            });
+//**********back del of button*****************************************************************************************************************************************
 
                             Button backButton = new Button("الرجوع بخطوة");
                             backButton.setId("backBtn");
@@ -1141,17 +1547,7 @@ public class HelloApplication extends Application {
                                     data.add(delPerson);
                                 }
                                 tableView.setItems(data);
-                                // Disable back button
-                                backButton.setDisable(true);
-                                // Clear selection
                                 tableView.getSelectionModel().clearSelection();
-                            });
-
-// Disable back button initially
-                            backButton.setDisable(true);
-
-                            tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-                                backButton.setDisable(newSelection == null);
 
                             });
 
@@ -1160,42 +1556,604 @@ public class HelloApplication extends Application {
 
                             FilteredList<Person> filteredData = new FilteredList<>(data, p -> true);
 
-                            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-                                filteredData.setPredicate(person -> {
-                                    if (newValue == null || newValue.isEmpty()) {
-                                        return true;
-                                    }
+//***********add Person*****************************************************************************************************************************************************
+                            addClient.setOnAction(e -> {
 
-                                    String lowerCaseFilter = newValue.toLowerCase();
+                                Person selectedPerson = tableView.getSelectionModel().getSelectedItem();
+                                // create a new window
+                                Stage addPersonStage = new Stage();
 
-                                    if (person.getFirstName().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    } else if (person.getLastName().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    }else if (person.getClasses().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    }else if (person.getDate().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    }else if (person.getCouse().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    }else if (person.getKhasem().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    }else if (person.getLiew().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    }else if (person.getLastFather().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    }else if (person.getSujet().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    }
-                                    else if (person.getRetard().toLowerCase().contains(lowerCaseFilter)) {
-                                        return true;
-                                    }
-                                    else if (String.valueOf(person.getId()).contains(lowerCaseFilter)) {
-                                        return true;
-                                    }
+                                BoxBlur blur = new BoxBlur();
+                                blur.setWidth(10);
+                                blur.setHeight(10);
+                                blur.setIterations(3);
+                                stage.getScene().getRoot().setEffect(blur);
 
-                                    return false;
+                                addPersonStage.setTitle("إضافة موكل");
+
+                                ObservableList<String> jihaOptions = FXCollections.observableArrayList(
+                                        "المحكمة", "المحكمة العليا", "المحكمة الإدارية","المحكمة العسكرية","محكمة الجنايات","مجلس الدولة"
+                                );
+                                ChoiceBox<String> jihaChoiceBox = new ChoiceBox<>(jihaOptions);
+                                jihaChoiceBox.setId("feild");
+                                jihaChoiceBox.setPrefWidth(200);
+
+                                ObservableList<String> sivaOptions = FXCollections.observableArrayList(
+                                        "المحكمة", "المحكمة العليا", "المحكمة الإدارية","المحكمة العسكرية","محكمة الجنايات","مجلس الدولة"
+                                );
+                                ChoiceBox<String> sivaChoiceBox = new ChoiceBox<>(sivaOptions);
+                                sivaChoiceBox.setId("feild");
+                                sivaChoiceBox.setPrefWidth(200);
+
+                                // create input fields for the person properties
+                                ObservableList<String> lieuOptions = FXCollections.observableArrayList(
+                                         "محكمة توقرت", "محكمة ورقلة","محكمة الوادي","محكمة الحزائر","محكمة وهران"
+                                );
+                                ChoiceBox<String> lieuChoiceBox = new ChoiceBox<>(lieuOptions);
+                                lieuChoiceBox.setId("feild");
+                                lieuChoiceBox.setPrefWidth(200);
+
+                                ObservableList<String> classesOptions = FXCollections.observableArrayList(
+                                        "عقاري", "تجاري","جزائي","شؤون الاسرة","مدني"
+                                );
+                                ChoiceBox<String> classesChoiceBox = new ChoiceBox<>(classesOptions);
+                                classesChoiceBox.setId("feild");
+                                classesChoiceBox.setPrefWidth(200);
+
+                                TextField couseField = new TextField();
+                                couseField.setId("feild");
+                                couseField.setPrefWidth(200);
+                                DatePicker retardField = new DatePicker();
+                                retardField.setId("feild");
+                                retardField.setPrefWidth(200);
+                                DatePicker dateField = new DatePicker();
+                                dateField.setId("feild");
+                                dateField.setPrefWidth(200);
+                                TextField sujetField = new TextField();
+                                sujetField.setId("feild");
+                                sujetField.setPrefWidth(200);
+                                TextField khasemChoiceBox = new TextField();
+                                khasemChoiceBox.setId("feild");
+                                khasemChoiceBox.setPrefWidth(200);
+                                TextField lastFatherField = new TextField();
+                                lastFatherField.setId("feild");
+                                lastFatherField.setPrefWidth(200);
+                                TextField lastNameField = new TextField();
+                                lastNameField.setId("feild");
+                                lastNameField.setPrefWidth(200);
+                                TextField firstNameField = new TextField();
+                                firstNameField.setId("feild");
+                                firstNameField.setPrefWidth(200);
+                                TextField idField = new TextField();
+                                idField.setId("feild");
+                                idField.setPrefWidth(200);
+
+                                Label j = new Label("الجهة القضائية : *");
+                                Label l = new Label("مكان الجلسة : *");
+                                Label c = new Label("سبب التأجيل :");
+                                Label r = new Label("تاريخ التأجيل :");
+                                Label d = new Label("تاريخ الجلسة : *");
+                                Label s = new Label("الموضوع : *");
+                                Label cl = new Label("القسم أو الغرفة : *");
+                                Label k =new Label("الخصم : *");
+                                Label f =new Label("إسم الأب :");
+                                Label ls =new Label("إسم الموكل : *");
+                                Label si =new Label("صفةالموكل : *");
+                                Label fn =new Label("لقب الموكل : *");
+                                Label i =new Label("رقم القضية : *");
+
+                                Pattern pattern = Pattern.compile("\\d*"); // regular expression for digits
+                                TextFormatter<String> idFormatter = new TextFormatter<>(change -> {
+                                    String newText = change.getControlNewText();
+                                    if (pattern.matcher(newText).matches()) {
+                                        return change;
+                                    } else {
+                                        return null; // reject the change
+                                    }
                                 });
+                                idField.setTextFormatter(idFormatter);
+
+                                // create a save button
+
+//*************Animation*********************************************************************************************************************************
+
+                                Timeline timeline = new Timeline(
+                                        new KeyFrame(Duration.seconds(0),
+                                                new KeyValue(firstNameField.translateXProperty(), 2)),
+                                        new KeyFrame(Duration.seconds(0.125),
+                                                new KeyValue(firstNameField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.25),
+                                                new KeyValue(firstNameField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.375),
+                                                new KeyValue(firstNameField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.5),
+                                                new KeyValue(firstNameField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.625),
+                                                new KeyValue(firstNameField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.75),
+                                                new KeyValue(firstNameField.translateXProperty(), 0))
+                                );
+
+                                Timeline timeline1 = new Timeline(
+                                        new KeyFrame(Duration.seconds(0),
+                                                new KeyValue(idField.translateXProperty(), 2)),
+                                        new KeyFrame(Duration.seconds(0.125),
+                                                new KeyValue(idField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.25),
+                                                new KeyValue(idField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.375),
+                                                new KeyValue(idField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.5),
+                                                new KeyValue(idField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.625),
+                                                new KeyValue(idField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.75),
+                                                new KeyValue(idField.translateXProperty(), 0))
+                                );
+
+                                Timeline timeline2 = new Timeline(
+                                        new KeyFrame(Duration.seconds(0),
+                                                new KeyValue(lastNameField.translateXProperty(), 2)),
+                                        new KeyFrame(Duration.seconds(0.125),
+                                                new KeyValue(lastNameField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.25),
+                                                new KeyValue(lastNameField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.375),
+                                                new KeyValue(lastNameField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.5),
+                                                new KeyValue(lastNameField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.625),
+                                                new KeyValue(lastNameField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.75),
+                                                new KeyValue(lastNameField.translateXProperty(), 0))
+                                );
+
+                                Timeline timeline3 = new Timeline(
+                                        new KeyFrame(Duration.seconds(0),
+                                                new KeyValue(khasemChoiceBox.translateXProperty(), 2)),
+                                        new KeyFrame(Duration.seconds(0.125),
+                                                new KeyValue(khasemChoiceBox.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.25),
+                                                new KeyValue(khasemChoiceBox.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.375),
+                                                new KeyValue(khasemChoiceBox.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.5),
+                                                new KeyValue(khasemChoiceBox.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.625),
+                                                new KeyValue(khasemChoiceBox.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.75),
+                                                new KeyValue(khasemChoiceBox.translateXProperty(), 0))
+                                );
+
+                                Timeline timeline8 = new Timeline(
+                                        new KeyFrame(Duration.seconds(0),
+                                                new KeyValue(sujetField.translateXProperty(), 2)),
+                                        new KeyFrame(Duration.seconds(0.125),
+                                                new KeyValue(sujetField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.25),
+                                                new KeyValue(sujetField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.375),
+                                                new KeyValue(sujetField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.5),
+                                                new KeyValue(sujetField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.625),
+                                                new KeyValue(sujetField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.75),
+                                                new KeyValue(sujetField.translateXProperty(), 0))
+                                );
+
+                                Timeline timeline9 = new Timeline(
+                                        new KeyFrame(Duration.seconds(0),
+                                                new KeyValue(dateField.translateXProperty(), 2)),
+                                        new KeyFrame(Duration.seconds(0.125),
+                                                new KeyValue(dateField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.25),
+                                                new KeyValue(dateField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.375),
+                                                new KeyValue(dateField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.5),
+                                                new KeyValue(dateField.translateXProperty(), +5)),
+                                        new KeyFrame(Duration.seconds(0.625),
+                                                new KeyValue(dateField.translateXProperty(), -5)),
+                                        new KeyFrame(Duration.seconds(0.75),
+                                                new KeyValue(dateField.translateXProperty(), 0))
+                                );
+
+                                Button saveButton = new Button("إضافة");
+                                saveButton.setId("btnaddClient");
+                                saveButton.setOnAction(event -> {
+
+                                        if (idField.getText().isEmpty()) {
+                                            idField.setStyle("-fx-border-color: red");
+                                            i.setStyle("-fx-text-fill: red");
+                                            timeline1.play();
+
+                                        } else {
+                                            idField.setStyle("-fx-border-color: #2C9344");
+                                            i.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (lastFatherField.getText().isEmpty()) {
+                                            lastFatherField.setStyle("-fx-border-color: black");
+                                            f.setStyle("-fx-text-fill: black");
+
+                                        } else {
+                                            lastFatherField.setStyle("-fx-border-color: #2C9344");
+                                            f.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (retardField.getValue()== null) {
+                                            retardField.setStyle("-fx-border-color: black");
+                                            r.setStyle("-fx-text-fill: black");
+
+                                        } else {
+                                            retardField.setStyle("-fx-border-color: #2C9344");
+                                            r.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (couseField.getText().isEmpty()) {
+                                            couseField.setStyle("-fx-border-color: black");
+                                            c.setStyle("-fx-text-fill: black");
+
+                                        } else {
+                                            couseField.setStyle("-fx-border-color: #2C9344");
+                                            c.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (firstNameField.getText().isEmpty()) {
+                                            firstNameField.setStyle("-fx-border-color: red");
+                                            fn.setStyle("-fx-text-fill: red");
+                                            timeline.play();
+
+                                        } else {
+                                            firstNameField.setStyle("-fx-border-color: #2C9344");
+                                            fn.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                        if (lastNameField.getText().isEmpty()) {
+                                            lastNameField.setStyle("-fx-border-color: red");
+                                            timeline2.play();
+                                            ls.setStyle("-fx-text-fill: red");
+
+                                        } else {
+                                            lastNameField.setStyle("-fx-border-color: #2C9344");
+                                            ls.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                    if (sivaChoiceBox.getValue() == null) {
+                                        // Create a timeline with two key frames that rotate the choice box back and forth
+                                        Timeline timeline4 = new Timeline(
+                                                new KeyFrame(Duration.seconds(0),
+                                                        new KeyValue(sivaChoiceBox.translateXProperty(), 2)),
+                                                new KeyFrame(Duration.seconds(0.125),
+                                                        new KeyValue(sivaChoiceBox.translateXProperty(), -5)),
+                                                new KeyFrame(Duration.seconds(0.25),
+                                                        new KeyValue(sivaChoiceBox.translateXProperty(), +5)),
+                                                new KeyFrame(Duration.seconds(0.375),
+                                                        new KeyValue(sivaChoiceBox.translateXProperty(), -5)),
+                                                new KeyFrame(Duration.seconds(0.5),
+                                                        new KeyValue(sivaChoiceBox.translateXProperty(), +5)),
+                                                new KeyFrame(Duration.seconds(0.625),
+                                                        new KeyValue(sivaChoiceBox.translateXProperty(), -5)),
+                                                new KeyFrame(Duration.seconds(0.75),
+                                                        new KeyValue(sivaChoiceBox.translateXProperty(), 0))
+                                        );
+                                        // Set the border color of the choice box to red
+                                        sivaChoiceBox.setStyle("-fx-border-color: red;");
+                                        si.setStyle("-fx-text-fill: red;");
+                                        // Start the timeline animation
+                                        timeline4.play();
+
+                                    } else {
+                                        // Set the border color of the choice box to #2C9344
+                                        sivaChoiceBox.setStyle("-fx-border-color: #2C9344;");
+                                        si.setStyle("-fx-text-fill: #2C9344;");
+                                    }
+
+                                        if (khasemChoiceBox.getText().isEmpty()) {
+                                            khasemChoiceBox.setStyle("-fx-border-color: red");
+                                            k.setStyle("-fx-text-fill: red");
+                                            timeline3.play();
+
+                                        } else {
+                                            khasemChoiceBox.setStyle("-fx-border-color: #2C9344");
+                                            k.setStyle("-fx-text-fill: #2C9344");
+                                        }
+
+                                    if (classesChoiceBox.getValue() == null) {
+                                        // Create a timeline with two key frames that rotate the choice box back and forth
+                                        Timeline timeline5 = new Timeline(
+                                            new KeyFrame(Duration.seconds(0),
+                                                    new KeyValue(classesChoiceBox.translateXProperty(), 2)),
+                                            new KeyFrame(Duration.seconds(0.125),
+                                                    new KeyValue(classesChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.25),
+                                                    new KeyValue(classesChoiceBox.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.375),
+                                                    new KeyValue(classesChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(classesChoiceBox.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.625),
+                                                    new KeyValue(classesChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.75),
+                                                    new KeyValue(classesChoiceBox.translateXProperty(), 0))
+                                        );
+                                        // Set the border color of the choice box to red
+                                        classesChoiceBox.setStyle("-fx-border-color: red;");
+                                        cl.setStyle("-fx-text-fill: red;");
+                                        // Start the timeline animation
+                                        timeline5.play();
+
+                                    } else {
+                                        // Set the border color of the choice box to #2C9344
+                                        classesChoiceBox.setStyle("-fx-border-color: #2C9344;");
+                                        cl.setStyle("-fx-text-fill: #2C9344;");
+                                    }
+
+
+                                    if (lieuChoiceBox.getValue() == null) {
+                                        // Create a timeline with two key frames that rotate the choice box back and forth
+                                        Timeline timeline6 = new Timeline(
+                                            new KeyFrame(Duration.seconds(0),
+                                                    new KeyValue(lieuChoiceBox.translateXProperty(), 2)),
+                                            new KeyFrame(Duration.seconds(0.125),
+                                                    new KeyValue(lieuChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.25),
+                                                    new KeyValue(lieuChoiceBox.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.375),
+                                                    new KeyValue(lieuChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(lieuChoiceBox.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.625),
+                                                    new KeyValue(lieuChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.75),
+                                                    new KeyValue(lieuChoiceBox.translateXProperty(), 0))
+                                        );
+                                        // Set the border color of the choice box to red
+                                        lieuChoiceBox.setStyle("-fx-border-color: red;");
+                                        l.setStyle("-fx-text-fill: red;");
+                                        // Start the timeline animation
+                                        timeline6.play();
+
+                                    } else {
+                                        // Set the border color of the choice box to #2C9344
+                                        lieuChoiceBox.setStyle("-fx-border-color: #2C9344;");
+                                        l.setStyle("-fx-text-fill: #2C9344;");
+                                    }
+
+                                    if (jihaChoiceBox.getValue() == null) {
+                                        // Create a timeline with two key frames that rotate the choice box back and forth
+                                        Timeline timeline7 = new Timeline(
+                                            new KeyFrame(Duration.seconds(0),
+                                                    new KeyValue(jihaChoiceBox.translateXProperty(), 2)),
+                                            new KeyFrame(Duration.seconds(0.125),
+                                                    new KeyValue(jihaChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.25),
+                                                    new KeyValue(jihaChoiceBox.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.375),
+                                                    new KeyValue(jihaChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.5),
+                                                    new KeyValue(jihaChoiceBox.translateXProperty(), +5)),
+                                            new KeyFrame(Duration.seconds(0.625),
+                                                    new KeyValue(jihaChoiceBox.translateXProperty(), -5)),
+                                            new KeyFrame(Duration.seconds(0.75),
+                                                    new KeyValue(jihaChoiceBox.translateXProperty(), 0))
+                                        );
+                                        // Set the border color of the choice box to red
+                                        jihaChoiceBox.setStyle("-fx-border-color: red;");
+                                        j.setStyle("-fx-text-fill: red;");
+                                        // Start the timeline animation
+                                        timeline7.play();
+
+                                    } else {
+                                        // Set the border color of the choice box to black
+                                        jihaChoiceBox.setStyle("-fx-border-color: #2C9344;");
+                                        j.setStyle("-fx-text-fill: #2C9344;");
+                                    }
+
+                                    if (sujetField.getText().isEmpty()) {
+                                        sujetField.setStyle("-fx-border-color: red");
+                                        s.setStyle("-fx-text-fill: red");
+                                        timeline8.play();
+
+                                    } else {
+                                        sujetField.setStyle("-fx-border-color: #2C9344");
+                                        s.setStyle("-fx-text-fill: #2C9344");
+                                    }
+                                    if (dateField.getValue()== null) {
+                                        dateField.setStyle("-fx-border-color: red");
+                                        d.setStyle("-fx-text-fill: red");
+                                        timeline9.play();
+
+                                    } else {
+                                        dateField.setStyle("-fx-border-color: #2C9344");
+                                        d.setStyle("-fx-text-fill: #2C9344");
+                                    }
+
+                                    if (!idField.getText().isEmpty() && !firstNameField.getText().isEmpty() && !lastNameField.getText().isEmpty() && sivaChoiceBox.getValue() != null && !khasemChoiceBox.getText().isEmpty() && classesChoiceBox.getValue() != null && lieuChoiceBox.getValue() != null && jihaChoiceBox.getValue() != null && !sujetField.getText().isEmpty() && dateField.getValue() != null){
+                                        // retrieve the values from the input fields
+                                        String jiha = jihaChoiceBox.getValue();
+                                        String lieu = lieuChoiceBox.getValue();
+                                        String couse = couseField.getText();
+                                        LocalDate retard = retardField.getValue();
+                                        LocalDate date = dateField.getValue();
+                                        String sujet = sujetField.getText();
+                                        String classes = classesChoiceBox.getValue();
+                                        String khasem = khasemChoiceBox.getText();
+                                        String sifa = sivaChoiceBox.getValue();
+                                        String lastFather = lastFatherField.getText();
+                                        String lastName = lastNameField.getText();
+                                        String firstName = firstNameField.getText();
+                                        int id = Integer.parseInt(idField.getText());
+
+                                        ObservableList<Person> personList = tableView.getItems();
+
+                                        Person newPerson = new Person(jiha,lieu, couse, retard, date, sujet, classes, khasem,sifa, lastFather, lastName, firstName, id);
+                                        data.add(newPerson);
+
+                                        jihaChoiceBox.getSelectionModel().clearSelection();
+                                        lieuChoiceBox.getSelectionModel().clearSelection();
+                                        couseField.clear();
+                                        retardField.setValue(null);
+                                        dateField.setValue(null);
+                                        sujetField.clear();
+                                        classesChoiceBox.getItems().clear();
+                                        classesChoiceBox.getSelectionModel().clearSelection();
+                                        khasemChoiceBox.clear();
+                                        lastFatherField.setText(null);
+                                        lastNameField.setText(null);
+                                        firstNameField.setText(null);
+                                        idField.clear();
+                                        addPersonStage.close();
+
+                                    }
+                                });
+                                // create a layout for the new window
+
+                                Button delButton = new Button("حذف كل");
+                                delButton.setId("btndel");
+                                delButton.setOnAction(new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent actionEvent) {
+                                        jihaChoiceBox.getSelectionModel().clearSelection();
+                                        lieuChoiceBox.getSelectionModel().clearSelection();
+                                        couseField.clear();
+                                        retardField.setValue(null);
+                                        dateField.setValue(null);
+                                        sujetField.clear();
+                                        sivaChoiceBox.getSelectionModel().clearSelection();
+                                        classesChoiceBox.getItems().clear();
+                                        classesChoiceBox.getSelectionModel().clearSelection();
+                                        khasemChoiceBox.clear();
+                                        lastFatherField.setText(null);
+                                        lastNameField.setText(null);
+                                        firstNameField.setText(null);
+                                        idField.clear();
+                                    }
+                                });
+                                Button qutButton = new Button("إلغاء");
+                                qutButton.setId("btnqut");
+                                qutButton.setOnAction(new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent actionEvent) {
+                                        stage.getScene().getRoot().setEffect(null);
+                                        addPersonStage.close();
+                                    }
+                                });
+                                GridPane grid = new GridPane();
+                                grid.setId("grid");
+                                grid.setHgap(20);
+                                grid.setVgap(20);
+                                grid.setPadding(new Insets(20, 20, 20, 20));
+
+
+                                j.setId("lable");
+                                //j.setAlignment(Pos.CENTER);
+                                grid.add(j, 3,3);
+                                grid.add(jihaChoiceBox, 2,3);
+
+
+                                l.setId("lable");
+                                grid.add(l, 5,3);
+                                grid.add(lieuChoiceBox, 4,3);
+
+
+                                c.setId("lable");
+                                grid.add(c, 1,4);
+                                grid.add(couseField, 0,4);
+
+
+                                r.setId("lable");
+                                grid.add(r, 3,4);
+                                grid.add(retardField, 2,4);
+
+
+                                d.setId("lable");
+                                grid.add(d, 5,4);
+                                grid.add(dateField, 4,4);
+
+
+                                s.setId("lable");
+                                grid.add(s, 1,3);
+                                grid.add(sujetField, 0,3);
+
+
+                                cl.setId("lable");
+                                grid.add(cl, 1,2);
+                                grid.add(classesChoiceBox, 0,2);
+
+
+                                k.setId("lable");
+                                grid.add(k, 3,2);
+                                grid.add(khasemChoiceBox, 2,2);
+
+
+                                f.setId("lable");
+                                grid.add(f, 1,1);
+                                grid.add(lastFatherField, 0,1);
+
+
+                                ls.setId("lable");
+                                grid.add(ls, 3,1);
+                                grid.add(lastNameField, 2,1);
+
+
+                                si.setId("lable");
+                                grid.add(si, 5,2);
+                                grid.add(sivaChoiceBox, 4,2);
+
+
+                                fn.setId("lable");
+                                grid.add(fn, 5,1);
+                                grid.add(firstNameField, 4,1);
+
+
+                                i.setId("lable");
+                                grid.add(i, 3,0);
+                                grid.add(idField, 2,0);
+
+                                grid.add(saveButton,2,5);
+                                grid.add(delButton,0,5);
+                                grid.add(qutButton,4,5);
+
+                                addPersonStage.close();
+
+                                //data.add(newPerson);
+                                tableView.setItems(data);
+                                tableView.refresh();
+                                // Create a new Scene for the add stage and set the layout
+                                Scene addScene = new Scene(grid);
+                                addScene.getStylesheets().add(HelloApplication.class.getResource("addClient.css").toExternalForm());
+                                // Set the add stage's scene and show the stage
+                                addPersonStage.setScene(addScene);
+                                addPersonStage.show();
+                            });
+
+//**********recharche*****************************************************************************************************************************************
+
+                            tableView.setItems(data);
+                            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+
+                                String searchText = searchField.getText().toLowerCase();
+                                ObservableList<Person> filteredData1 = FXCollections.observableArrayList();
+                                for (Person person : data) {
+                                    if (person.getLieu().toLowerCase().contains(searchText) ||
+                                        person.getJiha().toLowerCase().contains(searchText) ||
+                                        person.getCouse().toLowerCase().contains(searchText) ||
+                                        person.getRetard().toString().toLowerCase().contains(searchText) ||
+                                        person.getDate().toString().toLowerCase().contains(searchText) ||
+                                        person.getSujet().toLowerCase().contains(searchText) ||
+                                        person.getClasses().toLowerCase().contains(searchText) ||
+                                        person.getKhasem().toLowerCase().contains(searchText) ||
+                                        person.getFirstName().toLowerCase().contains(searchText) ||
+                                        person.getLastName().toLowerCase().contains(searchText) ||
+                                        person.getFirstName().toLowerCase().contains(searchText) ||
+                                        String.valueOf(person.getId()).toLowerCase().contains(searchText)) {
+                                        filteredData1.add(person);
+                                    }
+                                }
+                                tableView.setItems(filteredData1);
+
                             });
 
                             tableView.setItems(filteredData);
@@ -1205,14 +2163,10 @@ public class HelloApplication extends Application {
 
                             tableView.setStyle("-fx-background-color: #f2f2f2;");
 
-//---------------------------------------------------------------------------------------------
-
                             btnTemp.setLayoutX(250);
                             btnTemp.setLayoutY(30);
                             btnTemp.setGraphic(iTemp);
                             btnTemp.setStyle("-fx-background-color: transparent");
-
-
 
                             Button btnLogo = new Button();
 
@@ -1250,10 +2204,177 @@ public class HelloApplication extends Application {
                     m3.setId("btnRapid");
                     m3.setLayoutX(50);
                     m3.setLayoutY(330);
+//تقويم*********************-------------------------------------------------------------------------------********************
+                    m3.setOnAction(new EventHandler<ActionEvent>() {
+
+                        private GridPane calendarPane;
+                        private Label yearLabel;
+                        private int currentYear;
+                        private int currentMonth;
+
+                        @Override
+                        public void handle(ActionEvent actionEvent) {
+
+                            Stage primaryStage = new Stage();
+                            currentYear = YearMonth.now().getYear();
+                            currentMonth = YearMonth.now().getMonthValue();
+
+                            // Create calendar pane
+                            calendarPane = createCalendarPane(currentYear, currentMonth);
+
+                            // Create navigation buttons
+                            Button prevYearButton = new Button("<<");
+                            Button nextYearButton = new Button(">>");
+                            Button prevMonthButton = new Button("<");
+                            Button nextMonthButton = new Button(">");
+
+                            // Add button event handlers
+                            prevYearButton.setOnAction(event -> {
+                                currentYear--;
+                                yearLabel.setText(Integer.toString(currentYear));
+                                calendarPane = createCalendarPane(currentYear, currentMonth);
+                                updateScene(primaryStage);
+                            });
+
+                            nextYearButton.setOnAction(event -> {
+                                currentYear++;
+                                yearLabel.setText(Integer.toString(currentYear));
+                                calendarPane = createCalendarPane(currentYear, currentMonth);
+                                updateScene(primaryStage);
+                            });
+
+                            prevMonthButton.setOnAction(event -> {
+                                if (currentMonth == 1) {
+                                    currentMonth = 12;
+                                    currentYear--;
+                                } else {
+                                    currentMonth--;
+                                }
+                                calendarPane = createCalendarPane(currentYear, currentMonth);
+                                updateScene(primaryStage);
+                            });
+
+                            nextMonthButton.setOnAction(event -> {
+                                if (currentMonth == 12) {
+                                    currentMonth = 1;
+                                    currentYear++;
+                                } else {
+                                    currentMonth++;
+                                }
+                                calendarPane = createCalendarPane(currentYear, currentMonth);
+                                updateScene(primaryStage);
+                            });
+
+                            // Create year label
+                            yearLabel = new Label(Integer.toString(currentYear));
+                            yearLabel.setStyle("-fx-font-weight: bold;");
+
+                            // Create button box
+                            HBox buttonBox = new HBox(10);
+                            buttonBox.setPadding(new Insets(10));
+                            buttonBox.getChildren().addAll(prevYearButton, prevMonthButton, yearLabel, nextMonthButton, nextYearButton);
+
+                            // Create scene
+                            Scene scene = new Scene(new VBox(buttonBox, calendarPane), 800, 600);
+                            primaryStage.setScene(scene);
+                            primaryStage.setTitle("Calendar");
+                            primaryStage.show();
+                        }
+
+                        private void updateScene(Stage primaryStage) {
+                            Scene scene = primaryStage.getScene();
+                            VBox root = (VBox) scene.getRoot();
+                            root.getChildren().set(1, calendarPane);
+                        }
+
+                        private GridPane createCalendarPane(int year, int month) {
+                            GridPane calendarPane = new GridPane();
+                            calendarPane.setHgap(5);
+                            calendarPane.setVgap(5);
+                            calendarPane.setPadding(new Insets(10));
+
+                            // Add year and month labels
+                            Label monthLabel = new Label(YearMonth.of(year, month).getMonth().toString());
+                            monthLabel.setStyle("-fx-font-weight: bold;");
+                            calendarPane.add(monthLabel, 0, 0, 7, 1);
+                            GridPane.setHalignment(monthLabel, HPos.CENTER);
+
+                            // Add weekday labels
+                            String[] weekdays = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat","Sun"};
+
+                            for (int i = 0; i < weekdays.length; i++) {
+                                Label weekdayLabel = new Label(weekdays[i]);
+                                weekdayLabel.setStyle("-fx-font-weight: bold;");
+                                calendarPane.add(weekdayLabel, i, 1);
+                                GridPane.setHalignment(weekdayLabel, HPos.CENTER);
+                            }
+
+                            // Get first day of month
+                            LocalDate firstDayOfMonth = YearMonth.of(year, month).atDay(1);
+
+                            // Compute number of days in month
+                            int daysInMonth = YearMonth.of(year, month).lengthOfMonth();
+
+                            // Compute number of days to display from previous month
+                            int daysFromPrevMonth = firstDayOfMonth.getDayOfWeek().getValue() - 1;
+
+                            // Compute number of days to display from next month
+                            int daysFromNextMonth = 7 - ((daysInMonth + daysFromPrevMonth) % 7);
+
+                            // Display days from previous month
+                            YearMonth prevMonth = yearMonthMinusMonths(year, month, 1);
+                            for (int i = 1; i <= daysFromPrevMonth; i++) {
+                                int day = YearMonth.of(prevMonth.getYear(), prevMonth.getMonthValue()).lengthOfMonth() - daysFromPrevMonth + i;
+                                Label dayLabel = new Label(Integer.toString(day));
+                                dayLabel.setStyle("-fx-text-fill: gray;");
+                                calendarPane.add(dayLabel, i - 1, 2);
+                                GridPane.setHalignment(dayLabel, HPos.CENTER);
+                            }
+
+                            // Display days from current month
+                            for (int i = 1; i <= daysInMonth; i++) {
+                                int day = i;
+                                Label dayLabel = new Label(Integer.toString(day));
+                                calendarPane.add(dayLabel, (i - 1 + daysFromPrevMonth) % 7, (i - 1 + daysFromPrevMonth) / 7 + 2);
+                                GridPane.setHalignment(dayLabel, HPos.CENTER);
+                            }
+
+                            // Display days from next month
+                            YearMonth nextMonth = yearMonthPlusMonths(year, month, 1);
+                            for (int i = 1; i <= daysFromNextMonth; i++) {
+                                Label dayLabel = new Label(Integer.toString(i));
+                                dayLabel.setStyle("-fx-text-fill: gray;");
+                                calendarPane.add(dayLabel, (daysInMonth + daysFromPrevMonth + i - 1) % 7, (daysInMonth + daysFromPrevMonth + i - 1) / 7 + 2);
+                                GridPane.setHalignment(dayLabel, HPos.CENTER);
+                            }
+
+                            return calendarPane;
+                        }
+
+                        private YearMonth yearMonthMinusMonths(int year, int month, int months) {
+                            return YearMonth.of(year, month).minusMonths(months);
+                        }
+
+                        private YearMonth yearMonthPlusMonths(int year, int month, int months) {
+                            return YearMonth.of(year, month).plusMonths(months);
+                        }
+                    });
+
                     Button m4 = new Button("العرائض");
                     m4.setId("btnRapid");
                     m4.setLayoutX(800);
                     m4.setLayoutY(400);
+                    m4.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent actionEvent) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Information Dialog");
+                            alert.setHeaderText("This is an information message.");
+                            alert.setContentText("You can use alerts to display notifications.");
+
+                            alert.showAndWait();
+                        }
+                    });
                     Button m5 = new Button("اضافة قضية");
                     m5.setId("btnRapid");
                     m5.setLayoutX(550);
@@ -1277,19 +2398,12 @@ public class HelloApplication extends Application {
 
                     premaire.getChildren().addAll(hbox,vbox,qurane,qurane1,m100,m11,m2,m3,m4,m5,k,k11,k2,k3,btnLogo,btnProfil,btnTemp,btnContract,btnTelephone,btnPeople,btnHome);
 
-
-
-
                     scene3.getStylesheets().add(HelloApplication.class.getResource("style.css").toExternalForm());
-
-
-
 
                     stage.setMaximized(true);
                     stage.setScene(scene3);
                     stage.show();
                 }
-
             }
         });
 
@@ -1298,7 +2412,6 @@ public class HelloApplication extends Application {
 
         Label forgetPass = new Label("نسيت كلمة السر");
         forgetPass.setId("forgetPass");
-
         forgetPass.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -1345,7 +2458,6 @@ public class HelloApplication extends Application {
                     throw new RuntimeException(e);
                 }
 
-
                 ImageView iPas1 = new ImageView(log1);
                 iPas1.setFitWidth(33);
                 iPas1.setFitHeight(33);
@@ -1366,15 +2478,12 @@ public class HelloApplication extends Application {
 
                 btn.setStyle("-fx-background-color: transparent");
 
-//----------------------------------------------------------------------------------------------------------------
-
                 Image add;
                 try {
                     add = new Image(HelloApplication.class.getResource("addd.png").openStream());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
 
                 ImageView iAdd = new ImageView(add);
                 iAdd.setFitWidth(140);
@@ -1387,15 +2496,12 @@ public class HelloApplication extends Application {
 
                 btnAdd.setStyle("-fx-background-color: transparent");
 
-
-//--------------------------------------------------------------------------------------------------------------
                 Image name;
                 try {
                     name = new Image(HelloApplication.class.getResource("user_1.png").openStream());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
 
                 ImageView iName = new ImageView(name);
                 iName.setFitWidth(25);
@@ -1416,15 +2522,12 @@ public class HelloApplication extends Application {
                 txtName.setLayoutX(100);
                 txtName.setLayoutY(240);
 
-//-------------------------------------------------------------------------------------------------------
-
                 Image familly;
                 try {
                     familly = new Image(HelloApplication.class.getResource("group.png").openStream());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
 
                 ImageView iFamilly = new ImageView(familly);
                 iFamilly.setFitWidth(35);
@@ -1444,14 +2547,13 @@ public class HelloApplication extends Application {
                 txtFamilly.setLayoutX(500);
                 txtFamilly.setFocusTraversable(false);
                 txtFamilly.setLayoutY(240);
-//----------------------------------------------------------------------------------------------------------
+
                 Image email;
                 try {
                     email = new Image(HelloApplication.class.getResource("message.png").openStream());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
 
                 ImageView iEmail = new ImageView(email);
                 iEmail.setFitWidth(32);
@@ -1471,14 +2573,13 @@ public class HelloApplication extends Application {
                 txtEmail.setFocusTraversable(false);
                 txtEmail.setLayoutX(100);
                 txtEmail.setLayoutY(280);
-//-------------------------------------------------------------------------------------------------------------
+
                 Image tel;
                 try {
                     tel = new Image(HelloApplication.class.getResource("calling.png").openStream());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
 
                 ImageView iTel = new ImageView(tel);
                 iTel.setFitWidth(25);
@@ -1498,14 +2599,13 @@ public class HelloApplication extends Application {
                 txtTel.setFocusTraversable(false);
                 txtTel.setLayoutX(500);
                 txtTel.setLayoutY(280);
-//----------------------------------------------------------------------------------------------------------------
+
                 Image pass;
                 try {
                     pass = new Image(HelloApplication.class.getResource("mot_de_passe.png").openStream());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
 
                 ImageView iPass = new ImageView(pass);
                 iPass.setFitWidth(25);
@@ -1516,7 +2616,6 @@ public class HelloApplication extends Application {
                 btnPass.setLayoutX(50);
                 btnPass.setLayoutY(320);
 
-
                 btnPass.setStyle("-fx-background-color: transparent");
 
                 TextField txtPass = new TextField();
@@ -1526,14 +2625,13 @@ public class HelloApplication extends Application {
                 txtPass.setFocusTraversable(false);
                 txtPass.setLayoutX(100);
                 txtPass.setLayoutY(320);
-//--------------------------------------------------------------------------------------------------------------------------
+
                 Image coPass;
                 try {
                     coPass = new Image(HelloApplication.class.getResource("mot_de_passe.png").openStream());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
 
                 ImageView iCoPass = new ImageView(coPass);
                 iCoPass.setFitWidth(25);
@@ -1544,7 +2642,6 @@ public class HelloApplication extends Application {
                 btnCoPass.setLayoutX(450);
                 btnCoPass.setLayoutY(320);
 
-
                 btnCoPass.setStyle("-fx-background-color: transparent");
 
                 TextField txtCoPass = new TextField();
@@ -1554,36 +2651,24 @@ public class HelloApplication extends Application {
                 txtCoPass.setFocusTraversable(false);
                 txtCoPass.setLayoutX(500);
                 txtCoPass.setLayoutY(320);
-//---------------------------------------------------------------------------------------------------------
 
                 Label backLogin = new Label("لدي حساب بالفعل");
                 backLogin.setId("label");
                 //backLogin.setPrefWidth(250);
                 backLogin.setLayoutX(380);
                 backLogin.setLayoutY(550);
-
-
-
                 backLogin.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-
-
-
-                        //welcom.start(stage);
-
                         stage.setScene(scene);
                         stage.show();
                     }
                 });
 
-//----------------------------------------------------------------------------------------------------
-
                 Line line = new Line();
                 line.setId("line");
                 line.setStartX(0.0f);
                 line.setEndX(300.0f);
-                //gridPaneOR.add(line,0,0);
                 line.setLayoutX(111);
                 line.setLayoutY(498);
 
@@ -1629,8 +2714,6 @@ public class HelloApplication extends Application {
                 conf.setId("confir");
                 conf.setLayoutX(350);
                 conf.setLayoutY(440);
-
-
 
                 Timeline timeline = new Timeline(
                         new KeyFrame(Duration.seconds(0),
@@ -1797,80 +2880,8 @@ public class HelloApplication extends Application {
                         else{
                             txtCoPass.setStyle("-fx-border-color: white");
                         }
-
-
-                        if (!txtFamilly.getText().isEmpty() || !txtEmail.getText().isEmpty() || !txtName.getText().isEmpty() || !txtFamilly.getText().isEmpty() || !txtPass.getText().isEmpty() || !txtCoPass.getText().isEmpty() || !txtTel.getText().isEmpty()){
-
-
-                                    Group root  = new Group();
-                                    Image imag=new Image(getClass().getResourceAsStream("man.png"));
-                                    ImageView imageview=new ImageView(imag);
-                                    imageview.setLayoutX(30);
-                                    imageview.setLayoutY(500);
-                                    TranslateTransition trans=new TranslateTransition();
-                                    trans.setNode(imageview);
-                                    trans.setByY(-480);
-                                    trans.setDuration(Duration.millis(1500));
-                                    trans.play();
-
-//		    imageview.setLayoutX(35);
-//		    imageview.setLayoutY(20);
-                                    imageview.setFitHeight(300);
-                                    imageview.setFitWidth(300);
-                                    imageview.setId("imageview");
-                                    Button btn1=new Button(" اضغظ  هنا ");
-                                    btn1.setFont(Font.font("Segoe print",FontWeight.EXTRA_BOLD,25));
-                                    btn1.setLayoutX(500);
-                                    btn1.setLayoutY(-50);
-
-                                    btn1.setOnAction(e->{
-                                        Group root2  = new Group();
-                                        Scene sc2=new Scene(root2,500,500);
-                                        VBox vbox = new VBox(20);
-                                        DatePicker startDatePicker = new DatePicker();
-                                        DatePicker endDatePicker = new DatePicker();
-                                        startDatePicker.setValue(LocalDate.now());
-                                        endDatePicker.setValue(startDatePicker.getValue().plusDays(1));
-                                        vbox.getChildren().add(new Label("Start Date:"));
-                                        vbox.getChildren().add(startDatePicker);
-                                        vbox.getChildren().add(new Label("End Date:"));
-                                        vbox.getChildren().add(endDatePicker);
-                                        root2.getChildren().add(vbox)
-                                        ;		           Stage stage2=new Stage();
-                                        stage2.initModality(Modality.APPLICATION_MODAL);
-                                        stage2.setScene(sc2);
-                                        stage2.show();
-
-                                    });
-                                    TranslateTransition transbtn=new TranslateTransition();
-                                    transbtn.setNode(btn1);
-                                    transbtn.setByY(500);
-                                    transbtn.setDuration(Duration.millis(1500));
-                                    transbtn.play();
-                                    btn1.getStyleClass().add("btn1");
-
-                                    Label lb1=new Label("مرحبا");
-                                    TranslateTransition translb1=new TranslateTransition();
-                                    lb1.setLayoutX(900);
-                                    lb1.setLayoutY(-20);
-                                    translb1.setNode(lb1);
-                                    translb1.setByX(-250);
-                                    translb1.setDuration(Duration.millis(1500));
-                                    translb1.play();
-
-                                    lb1.getStyleClass().add("lb1");
-
-                                    root.getChildren().addAll(btn1,imageview ,lb1);
-                                    Scene scene7 = new Scene(root,1090,540,Color.WHITE);
-                                    //scene.getStylesheets().add(getClass().getResource("zineb.css").toExternalForm());
-                                    stage.setScene(scene7);
-                                    //primaryStage.setFullScreen(true);
-                                    stage.show();
-                                }
                     }
                 });
-
-
                 group.getChildren().addAll(mw,option1,option2,txtName,txtFamilly,txtEmail,txtTel,txtPass,txtCoPass,line,line1,or,backLogin,conf,btnName,btnFamilly,btnEmail,btnTel,btnPass,btnCoPass,btnAdd,btn);
 
                 Scene sceneCree = new Scene(group,850, 600);
@@ -1881,22 +2892,15 @@ public class HelloApplication extends Application {
                 stage.show();
             }
         });
-
-
+        
         vBoxBottom.getChildren().addAll(btnLogin,forgetPass,gridPaneOR,btnCreer);
         vBoxBottom.setPadding(new Insets(0,0,50,0));
         vBoxBottom.setAlignment(Pos.BOTTOM_CENTER);
 
-//--------------------------------------------------------------------------------------------------------------------------------
-
         String css = HelloApplication.class.getResource("l.css").toExternalForm();
         scene.getStylesheets().add(css);
 
-
-
-
         stage.setScene(scene);
-        //stage.setResizable(false);
         stage.show();
     }
 
